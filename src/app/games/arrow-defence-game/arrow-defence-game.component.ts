@@ -95,7 +95,8 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.canvasElement.height = this.stage.h;
 
     this.bulletAudio = new Audio();
-    this.bulletAudio.src = '';
+    this.bulletAudio.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Bluw-Arrow-Space-explosion.mp3';
     this.bulletAudio.load();
     this.bulletAudio.play();
 
