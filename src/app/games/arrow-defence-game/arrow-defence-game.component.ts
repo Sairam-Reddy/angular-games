@@ -96,8 +96,8 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   public ngOnDestroy(): void {}
 
   public onResize(): void {
-    var cw = window.innerWidth;
-    var ch = window.innerHeight;
+    const cw = window.innerWidth;
+    const ch = window.innerHeight;
     if (cw <= (ch * this.stage.w) / this.stage.h) {
       this.portrait = true;
       this.scale = this.stage.w / cw;
@@ -123,11 +123,11 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
 
   private initialiseView(): void {
     this.ctx.clearRect(0, 0, this.stage.w, this.stage.h);
-    for (var i = 0; i < 200; i++) {
-      var angle = Math.random() * Math.PI * 2;
-      var length = Math.random() * 250 + 50;
-      var myx = 360 + Math.sin(angle) * length;
-      var myy = 360 - Math.cos(angle) * length;
+    for (let i = 0; i < 200; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const length = Math.random() * 250 + 50;
+      const myx = 360 + Math.sin(angle) * length;
+      const myy = 360 - Math.cos(angle) * length;
       this.drawArrow(
         myx,
         myy,
@@ -142,11 +142,11 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.explodeImage.src = this.canvasElement.toDataURL('image/png');
 
     this.ctx.clearRect(0, 0, this.stage.w, this.stage.h);
-    for (var i = 0; i < 200; i++) {
-      var angle = Math.random() * Math.PI - Math.PI / 2;
-      var length = Math.random() * 480 + 50;
-      var myx = this.stage.w / 2 + Math.sin(angle) * length;
-      var myy = this.stage.h - Math.cos(angle) * length;
+    for (let i = 0; i < 200; i++) {
+      const angle = Math.random() * Math.PI - Math.PI / 2;
+      const length = Math.random() * 480 + 50;
+      const myx = this.stage.w / 2 + Math.sin(angle) * length;
+      const myy = this.stage.h - Math.cos(angle) * length;
       this.drawArrow(
         myx,
         myy,
@@ -163,11 +163,11 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.ctx.clearRect(0, 0, this.stage.w, this.stage.h);
     this.ctx.fillStyle = 'rgba(236,240,241,1)';
     this.ctx.fillRect(0, 0, this.stage.w, this.stage.h);
-    for (var i = 0; i < 200; i++) {
-      var angle = ((Math.random() * Math.PI) / Math.PI) * 180;
-      var length = Math.random() * 250 + 50;
-      var myx = Math.random() * this.stage.w;
-      var myy = Math.random() * this.stage.h;
+    for (let i = 0; i < 200; i++) {
+      const angle = ((Math.random() * Math.PI) / Math.PI) * 180;
+      const length = Math.random() * 250 + 50;
+      const myx = Math.random() * this.stage.w;
+      const myy = Math.random() * this.stage.h;
       this.drawArrow(
         myx,
         myy,
@@ -185,7 +185,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.backroundImage = new Image();
     this.backroundImage.src = this.canvasElement.toDataURL('image/png');
 
-    for (var i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
       this.enemies.push(new Enemy(this.stage));
 
       this.enemies[i].x += Math.sin(this.enemies[i].r) * 300;
@@ -250,9 +250,11 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   private animateView(): void {
     this.requestAnimFrame();
 
+    let trax: number;
+    let tray: number;
     if (this.shake) {
-      var trax = Math.random() * 60 - 30;
-      var tray = Math.random() * 60 - 30;
+      trax = Math.random() * 60 - 30;
+      tray = Math.random() * 60 - 30;
       this.ctx.translate(trax, tray);
     }
     this.fpscounter();
@@ -298,7 +300,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.bullets.push(new Bullet(this.stage, this.angle));
     }
 
-    for (var i = 0; i < this.bullets.length; i++) {
+    for (let i = 0; i < this.bullets.length; i++) {
       this.bullets[i].x -= Math.sin(this.bullets[i].r) * 20;
       this.bullets[i].y -= Math.cos(this.bullets[i].r) * 20;
       this.drawArrow(
@@ -318,7 +320,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       }
     }
 
-    for (var i = 0; i < this.enemies.length; i++) {
+    for (let i = 0; i < this.enemies.length; i++) {
       this.enemies[i].x += Math.sin(this.enemies[i].r) * 3;
       this.enemies[i].y += Math.cos(this.enemies[i].r) * 3;
       this.drawArrow(
@@ -336,10 +338,10 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
         this.shake = true;
         this.shaket = 0;
       }
-      for (var b = 0; b < this.bullets.length; b++) {
-        var dx = this.enemies[i].x - this.bullets[b].x;
-        var dy = this.enemies[i].y - this.bullets[b].y;
-        var dis = dx * dx + dy * dy;
+      for (let b = 0; b < this.bullets.length; b++) {
+        const dx = this.enemies[i].x - this.bullets[b].x;
+        const dy = this.enemies[i].y - this.bullets[b].y;
+        const dis = dx * dx + dy * dy;
         if (dis < 20 * 20) {
           this.explosions.push(
             new Explosion(this.enemies[i].x, this.enemies[i].y, 1)
@@ -351,12 +353,12 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     }
 
     if (this.ai) {
-      for (var l = 0; l < this.enemies.length; l++) {
-        var dx = this.enemies[l].x - this.stage.w / 2;
-        var dy = this.enemies[l].y - this.stage.h;
-        var dis = Math.floor(Math.sqrt(dx * dx + dy * dy));
-        var val1 = 100000 + dis;
-        var val2 = 1000 + l;
+      for (let l = 0; l < this.enemies.length; l++) {
+        const dx = this.enemies[l].x - this.stage.w / 2;
+        const dy = this.enemies[l].y - this.stage.h;
+        const dis = Math.floor(Math.sqrt(dx * dx + dy * dy));
+        const val1 = 100000 + dis;
+        const val2 = 1000 + l;
         this.cold[l] = val1 + 'x' + val2;
       }
 
@@ -366,8 +368,8 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
         this.angle += (this.enemies[this.eturn].r - this.angle) / 8;
       }
     } else {
-      var dx = this.pointer.x - this.stage.w / 2;
-      var dy = this.pointer.y - this.stage.h;
+      const dx = this.pointer.x - this.stage.w / 2;
+      const dy = this.pointer.y - this.stage.h;
       this.angle = Math.atan(dx / dy);
     }
 
@@ -381,9 +383,9 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       '#2c3e50'
     );
 
-    for (var e = 0; e < this.explosions.length; e++) {
+    for (let e = 0; e < this.explosions.length; e++) {
       if (this.explosions[e].ty == 1) {
-        var myimg = this.explodeImage;
+        const myimg = this.explodeImage;
         this.ctx.globalAlpha = 1 - this.explosions[e].t / this.stage.h;
         this.ctx.drawImage(
           myimg,
@@ -394,7 +396,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
         );
         this.ctx.globalAlpha = 1;
       } else {
-        var myimg = this.explodebImage;
+        const myimg = this.explodebImage;
         this.ctx.globalAlpha = 1 - this.explosions[e].t / this.stage.h;
         this.ctx.drawImage(
           myimg,
@@ -408,7 +410,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       }
     }
 
-    for (var e = 0; e < this.explosions.length; e++) {
+    for (let e = 0; e < this.explosions.length; e++) {
       this.explosions[e].t += 20;
       if (this.explosions[e].t > this.stage.h) {
         this.explosions.splice(e, 1);
@@ -422,9 +424,9 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.lastCalledTime = Date.now();
       return;
     }
-    var delta = (Date.now() - this.lastCalledTime) / 1000;
+    const delta = (Date.now() - this.lastCalledTime) / 1000;
     this.lastCalledTime = Date.now();
-    var fps = 1 / delta;
+    const fps = 1 / delta;
     this.fpcount++;
     this.fpall += fps;
     if (this.timebomb > 30) {
@@ -470,9 +472,9 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     hlen: number,
     color: string
   ) {
-    var dx = tox - fromx;
-    var dy = toy - fromy;
-    var angle = Math.atan2(dy, dx);
+    const dx = tox - fromx;
+    const dy = toy - fromy;
+    const angle = Math.atan2(dy, dx);
     this.ctx.fillStyle = color;
     this.ctx.strokeStyle = color;
     this.ctx.lineCap = 'round';
