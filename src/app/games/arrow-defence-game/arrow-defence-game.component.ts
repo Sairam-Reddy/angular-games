@@ -458,6 +458,33 @@ export class ArrowDefenceGameComponent implements AfterViewInit {
     //
   }
 
+  private toggleFullScreen() {
+    const doc = this.document;
+    const docElement = this.document.documentElement;
+
+    var requestFullScreen =
+      docElement.requestFullscreen ||
+      docElement.mozRequestFullScreen ||
+      docElement.webkitRequestFullScreen ||
+      docElement.msRequestFullscreen;
+    var cancelFullScreen =
+      doc.exitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen ||
+      doc.msExitFullscreen;
+
+    if (
+      !doc.fullscreenElement &&
+      !doc.mozFullScreenElement &&
+      !doc.webkitFullscreenElement &&
+      !doc.msFullscreenElement
+    ) {
+      requestFullScreen.call(docElement);
+    } else {
+      cancelFullScreen.call(doc);
+    }
+  }
+
   private drawArrow(
     fromx: number,
     fromy: number,
