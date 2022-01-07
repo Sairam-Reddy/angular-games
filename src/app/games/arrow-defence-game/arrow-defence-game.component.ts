@@ -83,6 +83,8 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   private explodebImage: HTMLImageElement;
   private backroundImage: HTMLImageElement;
 
+  private bulletAudio;
+
   public constructor(@Inject(DOCUMENT) private document: any) {}
 
   public ngAfterViewInit(): void {
@@ -90,6 +92,14 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.ctx = this.canvasElement.getContext('2d');
     this.canvasElement.width = this.stage.w;
     this.canvasElement.height = this.stage.h;
+
+    this.bulletAudio = new Audio();
+    this.bulletAudio.src = 'assets/mixkit-arcade-retro-jump-223.wav';
+    this.bulletAudio.load();
+    this.bulletAudio.play().then(() => {
+      //
+    });
+
     this.initialiseView();
   }
 
