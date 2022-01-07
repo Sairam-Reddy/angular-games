@@ -115,7 +115,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   public restart(): void {
     this.collisions = 0;
     this.bullets = [];
-    this.enemies = []
+    this.enemies = [];
     this.explosions = [];
     this.stopGame = false;
     this.initialiseView();
@@ -156,7 +156,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
 
     this.blueArrowExplosionAudio = new Audio();
     this.blueArrowExplosionAudio.src =
-      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Bluw-Arrow-Space-explosion.mp3';
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/mixkit-explosion-in-battle-2809.wav';
     this.blueArrowExplosionAudio.load();
 
     this.gunDestoryedAudio = new Audio();
@@ -391,6 +391,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
         this.explosions.push(new Explosion(this.stage.w / 2, this.stage.h, 2));
         this.shake = true;
         this.shaket = 0;
+        this.collisions = this.collisions + 1;
       }
       for (let b = 0; b < this.bullets.length; b++) {
         const dx = this.enemies[i].x - this.bullets[b].x;
@@ -457,7 +458,6 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       } else {
         const myimg = this.explodebImage;
 
-        this.collisions++;
         this.ctx.globalAlpha = 1 - this.explosions[e].t / this.stage.h;
         this.ctx.drawImage(
           myimg,
