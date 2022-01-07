@@ -18,7 +18,7 @@ import { Stage } from './models/stage.model';
   templateUrl: './arrow-defence-game.component.html',
   styleUrls: ['./arrow-defence-game.component.scss'],
 })
-export class ArrowDefenceGameComponent implements AfterViewInit {
+export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   @ViewChild('graphCanvas') graphCanvas: ElementRef;
   private ctx: CanvasRenderingContext2D;
   private canvasElement: HTMLCanvasElement;
@@ -91,6 +91,15 @@ export class ArrowDefenceGameComponent implements AfterViewInit {
     this.canvasElement.width = this.stage.w;
     this.canvasElement.height = this.stage.h;
     this.initialiseView();
+  }
+
+  public ngOnDestroy(): void {
+    window.removeEventListener('mousedown', this.motchstart);
+    window.removeEventListener('mousemove', this.motchstart);
+    window.removeEventListener('mouseup', this.motchstart);
+    window.removeEventListener('touchstart', this.motchstart);
+    window.removeEventListener('touchmove', this.motchstart);
+    window.removeEventListener('touchend', this.motchstart);
   }
 
   public onResize(): void {
