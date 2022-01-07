@@ -135,6 +135,106 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     }
     this.explodebImage = new Image();
     this.explodebImage.src = this.canvasElement.toDataURL('image/png');
+
+    this.ctx.clearRect(0, 0, this.stage.w, this.stage.h);
+    this.ctx.fillStyle = 'rgba(236,240,241,1)';
+    this.ctx.fillRect(0, 0, this.stage.w, this.stage.h);
+    for (var i = 0; i < 200; i++) {
+      var angle = ((Math.random() * Math.PI) / Math.PI) * 180;
+      var length = Math.random() * 250 + 50;
+      var myx = Math.random() * this.stage.w;
+      var myy = Math.random() * this.stage.h;
+      this.drawArrow(
+        myx,
+        myy,
+        myx + (length / 6) * Math.sin(angle),
+        myy - (length / 6) * Math.cos(angle),
+        length / 30,
+        length / 30,
+        this.colors[Math.floor(Math.random() * this.colors.length)]
+      );
+    }
+
+    this.ctx.fillStyle = 'rgba(236,240,241,0.9)';
+    this.ctx.fillRect(0, 0, this.stage.w, this.stage.h);
+
+    this.backroundImage = new Image();
+    this.backroundImage.src = this.canvasElement.toDataURL('image/png');
+
+    for (var i = 0; i < 10; i++) {
+      this.enemies.push(new Enemy(this.stage));
+
+      this.enemies[i].x += Math.sin(this.enemies[i].r) * 300;
+      this.enemies[i].y += Math.cos(this.enemies[i].r) * 300;
+    }
+
+    this.setupEventListeners();
+  }
+
+  private setupEventListeners(): void {
+    window.addEventListener(
+      'mousedown',
+      (e) => {
+        this.motchstart(e);
+      },
+      false
+    );
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        this.motchmove(e);
+      },
+      false
+    );
+    window.addEventListener(
+      'mouseup',
+      (e) => {
+        this.motchend(e);
+      },
+      false
+    );
+    window.addEventListener(
+      'touchstart',
+      (e) => {
+        e.preventDefault();
+        this.motchstart(e.touches[0]);
+      },
+      false
+    );
+    window.addEventListener(
+      'touchmove',
+      (e) => {
+        e.preventDefault();
+        this.motchmove(e.touches[0]);
+      },
+      false
+    );
+    window.addEventListener(
+      'touchend',
+      (e) => {
+        e.preventDefault();
+        this.motchend(e.touches[0]);
+      },
+      false
+    );
+  }
+
+  private motchstart(e) {
+    this.mxpos = (e.pageX - this.loffset) * this.scale;
+    this.mypos = (e.pageY - this.toffset) * this.scale;
+  }
+
+  private motchmove(e) {
+    this.mxpos = (e.pageX - this.loffset) * this.scale;
+    this.mypos = (e.pageY - this.toffset) * this.scale;
+    this.pointer.x = this.mxpos;
+    this.pointer.y = this.mypos;
+    this.ai = false;
+    this.ait = Date.now();
+  }
+
+  private motchend(e) {
+    //
   }
 
   private drawArrow(
