@@ -23,6 +23,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
 
   private ctx: CanvasRenderingContext2D;
   private canvasElement: HTMLCanvasElement;
+  public stopGame = false;
 
   private stage: Stage = {
     w: 1280,
@@ -70,6 +71,8 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   private enemies: Array<Enemy> = [];
   private explosions: Array<Explosion> = [];
 
+  private collisions: number = 0;
+
   private timebomb: number = 0;
   private lastCalledTime: number;
   private fpcount: number = 0;
@@ -107,6 +110,15 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     window.removeEventListener('touchstart', this.motchstart);
     window.removeEventListener('touchmove', this.motchstart);
     window.removeEventListener('touchend', this.motchstart);
+  }
+
+  public restart(): void {
+    this.collisions = 0;
+    this.bullets = [];
+    this.enemies = []
+    this.explosions = [];
+    this.stopGame = false;
+    this.initialiseView();
   }
 
   public onResize(): void {
@@ -445,6 +457,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       } else {
         const myimg = this.explodebImage;
 
+        this.collisions++;
         this.ctx.globalAlpha = 1 - this.explosions[e].t / this.stage.h;
         this.ctx.drawImage(
           myimg,
@@ -486,11 +499,15 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   }
 
   private requestAnimFrame() {
-    window.requestAnimationFrame(() =>
-      setTimeout(() => {
-        this.animateView();
-      }, 1000 / 60)
-    );
+    if (this.collisions < 2) {
+      window.requestAnimationFrame(() =>
+        setTimeout(() => {
+          this.animateView();
+        }, 1000 / 60)
+      );
+    } else {
+      this.stopGame = true;
+    }
   }
 
   private motchstart(e) {

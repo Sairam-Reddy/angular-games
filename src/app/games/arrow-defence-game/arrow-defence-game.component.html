@@ -1,3 +1,10 @@
 <div class="container" (window:resize)="onResize()">
   <canvas #graphCanvas class="canvas" width="1280" height="720"></canvas>
 </div>
+
+<div *ngIf="stopGame" class="fixed">
+  <div class="bg-white">
+    <p>Game over !!!</p>
+    <button (click)="restart()">Restart Game</button>
+  </div>
+</div>
