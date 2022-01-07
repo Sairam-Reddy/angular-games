@@ -144,7 +144,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
 
     this.blueArrowExplosionAudio = new Audio();
     this.blueArrowExplosionAudio.src =
-      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/mixkit-falling-hit-757.wav';
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/mixkit-explosion-in-battle-2809.wav';
     this.blueArrowExplosionAudio.load();
 
     this.gunDestoryedAudio = new Audio();
@@ -373,6 +373,8 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       );
       if (this.enemies[i].y > this.stage.h) {
         this.enemies[i] = new Enemy(this.stage);
+        this.gunDestoryedAudio.playbackRate = 2;
+        this.gunDestoryedAudio.play();
 
         this.explosions.push(new Explosion(this.stage.w / 2, this.stage.h, 2));
         this.shake = true;
@@ -383,6 +385,9 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
         const dy = this.enemies[i].y - this.bullets[b].y;
         const dis = dx * dx + dy * dy;
         if (dis < 20 * 20) {
+          this.blueArrowExplosionAudio.playbackRate = 12;
+          this.blueArrowExplosionAudio.play();
+
           this.explosions.push(
             new Explosion(this.enemies[i].x, this.enemies[i].y, 1)
           );
@@ -423,11 +428,11 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       '#2c3e50'
     );
 
-    this.blueArrowExplosionAudio.playbackRate = 6;
-
     for (let e = 0; e < this.explosions.length; e++) {
       if (this.explosions[e].ty == 1) {
         const myimg = this.explodeImage;
+        this.blueArrowExplosionAudio.playbackRate = 8;
+        this.blueArrowExplosionAudio.play();
 
         this.ctx.globalAlpha = 1 - this.explosions[e].t / this.stage.h;
         this.ctx.drawImage(
@@ -437,14 +442,11 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
           (this.explosions[e].t * this.stage.w) / this.stage.h,
           this.explosions[e].t
         );
-        this.blueArrowExplosionAudio.play();
 
         this.ctx.globalAlpha = 1;
       } else {
         const myimg = this.explodebImage;
 
-        this.gunDestoryedAudio.playbackRate = 2;
-        this.gunDestoryedAudio.play();
         this.ctx.globalAlpha = 1 - this.explosions[e].t / this.stage.h;
         this.ctx.drawImage(
           myimg,
