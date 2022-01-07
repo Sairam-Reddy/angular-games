@@ -85,6 +85,9 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   private backroundImage: HTMLImageElement;
 
   private bulletAudio: HTMLAudioElement;
+  private blueArrowExplosionAudio: HTMLAudioElement;
+  private gunDestoryedAudio: HTMLAudioElement;
+  private gameOverAudio: HTMLAudioElement;
 
   public constructor(@Inject(DOCUMENT) private document: any) {}
 
@@ -93,13 +96,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.ctx = this.canvasElement.getContext('2d');
     this.canvasElement.width = this.stage.w;
     this.canvasElement.height = this.stage.h;
-
-    this.bulletAudio = new Audio();
-    this.bulletAudio.src =
-      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Red-Arrow-Space_Grenade.mp3';
-    this.bulletAudio.load();
-    this.bulletAudio.play();
-
+    this.initialiseAudio();
     this.initialiseView();
   }
 
@@ -136,6 +133,29 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.canvasElement.style.marginLeft = this.loffset + 'px';
       this.canvasElement.style.marginTop = this.toffset + 'px';
     }
+  }
+
+  private initialiseAudio(): void {
+    // this.bulletAudio = new Audio();
+    // this.bulletAudio.src =
+    //   'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Game-Over-Cartoon.mp3';
+    // this.bulletAudio.load();
+
+    this.blueArrowExplosionAudio = new Audio();
+    this.blueArrowExplosionAudio.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Bluw-Arrow-Space-explosion.mp3';
+    this.blueArrowExplosionAudio.load();
+    this.blueArrowExplosionAudio.play();
+
+    this.gunDestoryedAudio = new Audio();
+    this.gunDestoryedAudio.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Red-Arrow-Space_Grenade.mp3';
+    this.gunDestoryedAudio.load();
+
+    this.gameOverAudio = new Audio();
+    this.gameOverAudio.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Game-Over-Cartoon.mp3';
+    this.gameOverAudio.load();
   }
 
   private initialiseView(): void {
