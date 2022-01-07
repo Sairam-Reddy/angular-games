@@ -144,7 +144,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
 
     this.blueArrowExplosionAudio = new Audio();
     this.blueArrowExplosionAudio.src =
-      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/mixkit-explosion-in-battle-2809.wav';
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Bluw-Arrow-Space-explosion.mp3';
     this.blueArrowExplosionAudio.load();
 
     this.gunDestoryedAudio = new Audio();
@@ -385,9 +385,6 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
         const dy = this.enemies[i].y - this.bullets[b].y;
         const dis = dx * dx + dy * dy;
         if (dis < 20 * 20) {
-          this.blueArrowExplosionAudio.playbackRate = 12;
-          this.blueArrowExplosionAudio.play();
-
           this.explosions.push(
             new Explosion(this.enemies[i].x, this.enemies[i].y, 1)
           );
@@ -431,6 +428,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     for (let e = 0; e < this.explosions.length; e++) {
       if (this.explosions[e].ty == 1) {
         const myimg = this.explodeImage;
+
         this.blueArrowExplosionAudio.playbackRate = 8;
         this.blueArrowExplosionAudio.play();
 
