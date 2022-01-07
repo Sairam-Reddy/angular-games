@@ -95,7 +95,31 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
 
   public ngOnDestroy(): void {}
 
-  public onResize(): void {}
+  public onResize(): void {
+    var cw = window.innerWidth;
+    var ch = window.innerHeight;
+    if (cw <= (ch * this.stage.w) / this.stage.h) {
+      this.portrait = true;
+      this.scale = this.stage.w / cw;
+      this.loffset = 0;
+      this.toffset = Math.floor(ch - (cw * this.stage.h) / this.stage.w) / 2;
+      this.canvasElement.style.width = cw + 'px';
+      this.canvasElement.style.height =
+        Math.floor((cw * this.stage.h) / this.stage.w) + 'px';
+      this.canvasElement.style.marginLeft = this.loffset + 'px';
+      this.canvasElement.style.marginTop = this.toffset + 'px';
+    } else {
+      this.scale = this.stage.h / ch;
+      this.portrait = false;
+      this.loffset = Math.floor(cw - (ch * this.stage.w) / this.stage.h) / 2;
+      this.toffset = 0;
+      this.canvasElement.style.height = ch + 'px';
+      this.canvasElement.style.width =
+        Math.floor((ch * this.stage.w) / this.stage.h) + 'px';
+      this.canvasElement.style.marginLeft = this.loffset + 'px';
+      this.canvasElement.style.marginTop = this.toffset + 'px';
+    }
+  }
 
   private initialiseView(): void {
     this.ctx.clearRect(0, 0, this.stage.w, this.stage.h);
@@ -169,6 +193,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     }
 
     this.setupEventListeners();
+    this.onResize();
   }
 
   private setupEventListeners(): void {
