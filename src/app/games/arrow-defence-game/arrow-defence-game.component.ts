@@ -191,6 +191,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit {
     }
 
     this.setupEventListeners();
+    this.onResize();
     this.animateView();
   }
 
