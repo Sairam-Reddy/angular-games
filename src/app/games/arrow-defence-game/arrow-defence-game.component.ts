@@ -145,12 +145,12 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.blueArrowExplosionAudio.src =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Bluw-Arrow-Space-explosion.mp3';
     this.blueArrowExplosionAudio.load();
+    this.blueArrowExplosionAudio.play();
 
     this.gunDestoryedAudio = new Audio();
     this.gunDestoryedAudio.src =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Red-Arrow-Space_Grenade.mp3';
     this.gunDestoryedAudio.load();
-    this.gunDestoryedAudio.play();
 
     this.gameOverAudio = new Audio();
     this.gameOverAudio.src =
