@@ -20,6 +20,7 @@ import { Stage } from './models/stage.model';
 })
 export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   @ViewChild('graphCanvas') graphCanvas: ElementRef;
+
   private ctx: CanvasRenderingContext2D;
   private canvasElement: HTMLCanvasElement;
 
@@ -83,7 +84,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   private explodebImage: HTMLImageElement;
   private backroundImage: HTMLImageElement;
 
-  private bulletAudio;
+  private bulletAudio: HTMLAudioElement;
 
   public constructor(@Inject(DOCUMENT) private document: any) {}
 
@@ -94,11 +95,9 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.canvasElement.height = this.stage.h;
 
     this.bulletAudio = new Audio();
-    this.bulletAudio.src = 'assets/mixkit-arcade-retro-jump-223.wav';
+    this.bulletAudio.src = '';
     this.bulletAudio.load();
-    this.bulletAudio.play().then(() => {
-      //
-    });
+    this.bulletAudio.play();
 
     this.initialiseView();
   }
