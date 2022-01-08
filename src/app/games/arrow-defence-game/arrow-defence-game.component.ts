@@ -87,9 +87,6 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   private explodebImage: HTMLImageElement;
   private backroundImage: HTMLImageElement;
 
-  private bulletAudio: HTMLAudioElement;
-  private blueArrowExplosionAudio: HTMLAudioElement;
-  private gunDestoryedAudio: HTMLAudioElement;
   private gameOverAudio: HTMLAudioElement;
 
   public constructor(@Inject(DOCUMENT) private document: any) {}
@@ -148,22 +145,6 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   }
 
   private initialiseAudio(): void {
-    this.bulletAudio = new Audio();
-
-    this.bulletAudio.src =
-      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/mixkit-arcade-retro-jump-223.wav';
-    this.bulletAudio.load();
-
-    this.blueArrowExplosionAudio = new Audio();
-    this.blueArrowExplosionAudio.src =
-      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/mixkit-explosion-in-battle-2809.wav';
-    this.blueArrowExplosionAudio.load();
-
-    this.gunDestoryedAudio = new Audio();
-    this.gunDestoryedAudio.src =
-      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Red-Arrow-Space_Grenade.mp3';
-    this.gunDestoryedAudio.load();
-
     this.gameOverAudio = new Audio();
     this.gameOverAudio.src =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Game-Over-Cartoon.mp3';
@@ -344,9 +325,10 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.btm++;
     if (this.btm > 8) {
       this.btm = 0;
-      // this.bulletAudio.playbackRate = 6;
-      // this.bulletAudio.play();
-      this.bullets.push(new Bullet(this.stage, this.angle));
+
+      const bullet: Bullet = new Bullet(this.stage, this.angle);
+      // bullet.sound.play();
+      this.bullets.push(bullet);
     }
 
     for (let i = 0; i < this.bullets.length; i++) {
@@ -385,8 +367,6 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       );
       if (this.enemies[i].y > this.stage.h) {
         this.enemies[i] = new Enemy(this.stage);
-        this.gunDestoryedAudio.playbackRate = 2;
-        this.gunDestoryedAudio.play();
 
         this.explosions.push(new Explosion(this.stage.w / 2, this.stage.h, 2));
         this.shake = true;
@@ -439,11 +419,9 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     );
 
     for (let e = 0; e < this.explosions.length; e++) {
+      this.explosions[e].sound.play();
       if (this.explosions[e].ty == 1) {
         const myimg = this.explodeImage;
-
-        this.blueArrowExplosionAudio.playbackRate = 8;
-        this.blueArrowExplosionAudio.play();
 
         this.ctx.globalAlpha = 1 - this.explosions[e].t / this.stage.h;
         this.ctx.drawImage(
