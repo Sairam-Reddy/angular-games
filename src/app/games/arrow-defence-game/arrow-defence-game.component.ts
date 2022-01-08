@@ -485,6 +485,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       );
     } else {
       this.stopGame = true;
+      this.gameOverAudio.play()
     }
   }
 
