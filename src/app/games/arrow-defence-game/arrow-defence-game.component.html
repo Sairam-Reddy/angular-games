@@ -1,11 +1,14 @@
 <div class="container" (window:resize)="onResize()">
   <canvas #graphCanvas class="canvas" width="1280" height="720"> </canvas>
-  <ul id="hud">
-    <li class="score">SCORE: <span class="score">0</span></li>
+  <ul class="hud">
+    <li *ngIf="!gameOver" class="score">
+      SCORE: <span class="score">{{ score }}</span>
+    </li>
   </ul>
-  <div *ngIf="stopGame" class="menu">
+  <div *ngIf="gameOver" class="menu">
     <h2 class="title">GAME OVER!</h2>
-    <div class="message">YOUR SCORE: 45</div>
-    <a href="#" class="start" (click)="restart()">START</a>
+    <div class="message">YOUR SCORE: {{ score }}</div>
+    <div class="message">HIGHEST SCORE: {{ highestScore }}</div>
+    <a  class="start" (click)="restart()">START AGAIN</a>
   </div>
 </div>

@@ -6,6 +6,19 @@
   }
 }
 
+:host {
+  position: relative;
+  flex-grow: 1;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  position: absolute;
+  display: flex;
+}
+
 .canvas {
   background: #ecf0f1;
 }
@@ -18,10 +31,13 @@ a {
 
 .menu {
   position: absolute;
+  background: black;
+  left: 50%;
   top: 50%;
-  margin-top: -45px;
+  margin-left: -60px;
+  margin-top: -60px;
+  padding: 10px;
   text-align: center;
-  width: 100%;
 }
 
 .start {
@@ -32,17 +48,19 @@ a {
 .title {
   font-size: 24px;
   margin-bottom: 15px;
+  color: white;
 }
 
 .message {
   font-size: 14px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  color: white;
 }
 
 .hud {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  // top: 10px;
+  // left: 10px;
   list-style: none;
 }
 

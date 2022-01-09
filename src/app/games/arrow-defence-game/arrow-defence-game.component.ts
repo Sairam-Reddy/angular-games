@@ -21,9 +21,13 @@ import { Stage } from './models/stage.model';
 export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   @ViewChild('graphCanvas') graphCanvas: ElementRef;
 
+  public gameOver = false;
+  public score = 0;
+  public highestScore = 0;
+  public scoreForExplosion = 100;
+
+  public canvasElement: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private canvasElement: HTMLCanvasElement;
-  public stopGame = false;
 
   private stage: Stage = {
     w: 1280,
@@ -114,7 +118,8 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.bullets = [];
     this.enemies = [];
     this.explosions = [];
-    this.stopGame = false;
+    this.gameOver = false;
+    this.score = 0;
     this.initialiseView();
   }
 
@@ -130,7 +135,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.canvasElement.style.height =
         Math.floor((cw * this.stage.h) / this.stage.w) + 'px';
       this.canvasElement.style.marginLeft = this.loffset + 'px';
-      this.canvasElement.style.marginTop = this.toffset + 'px';
+      // this.canvasElement.style.marginTop = this.toffset + 'px';
     } else {
       this.scale = this.stage.h / ch;
       this.portrait = false;
@@ -140,7 +145,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.canvasElement.style.width =
         Math.floor((ch * this.stage.w) / this.stage.h) + 'px';
       this.canvasElement.style.marginLeft = this.loffset + 'px';
-      this.canvasElement.style.marginTop = this.toffset + 'px';
+      // this.canvasElement.style.marginTop = this.toffset + 'px';
     }
   }
 
@@ -378,6 +383,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
         const dy = this.enemies[i].y - this.bullets[b].y;
         const dis = dx * dx + dy * dy;
         if (dis < 20 * 20) {
+          this.score = this.score + this.scoreForExplosion;
           this.explosions.push(
             new Explosion(this.enemies[i].x, this.enemies[i].y, 1)
           );
@@ -484,8 +490,11 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
         }, 1000 / 60)
       );
     } else {
-      this.stopGame = true;
-      this.gameOverAudio.play()
+      this.gameOver = true;
+      this.gameOverAudio.play();
+      if (this.score > this.highestScore) {
+        this.highestScore = this.score;
+      }
     }
   }
 
