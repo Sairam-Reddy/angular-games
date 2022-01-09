@@ -1,41 +1,8 @@
+import { PI, WEPON_DEFAULT } from '../constants/constants';
 import { HelperFunctions } from '../helpers/helper-functions';
 import { ExplosionPath } from './explosion.model';
 import { Path } from './path.model';
 import { Point } from './point.model';
-
-const WEPON_DEFAULT = {
-  // Weapon name
-  name: 'NORMAL BEAM',
-  // Damage dealt 0 ~ 1
-  power: 0.3,
-  // Bullet speed
-  speed: 3,
-  // Bullet length
-  length: 10,
-  // Bullet width
-  width: 1,
-  // The color of the bullet, in the case of special weapons, reflected in the color of the item, specified by CSS color
-  color: 'white',
-  // Fire rate
-  shootingInterval: 1000 * 0.35,
-  // true
-  // explosion
-  // Indicates whether the bullet
-  // If true, will not disappear even if it lands
-  // If explosion is specified, it takes precedence.
-  through: false,
-  // Range attack after landing due to explosion
-  // Specify with an object that has the following properties:
-  // { range: Explosion range, speed: Explosion speed }
-  // * The power of range attacks is half the basic power of weapons
-  explosion: false,
-};
-
-const PI = Math.PI;
-
-export class Wepon {
-  public power;
-}
 
 /**
  * Beam

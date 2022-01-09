@@ -1,8 +1,6 @@
+import { TWO_PI } from '../constants/constants';
 import { Path } from './path.model';
 import { Point } from './point.model';
-
-const PI = Math.PI;
-const TWO_PI = PI * 2;
 
 /**
  * Explosion

@@ -14,6 +14,12 @@ import { Point } from './models/point.model';
 import { Ship } from './models/ship.model';
 import { Ufo } from './models/ufo.model';
 import { Range } from './models/range.model';
+import {
+  ASTEROID_MAX_NUM,
+  ASTEROID_SPAWN_TIME,
+  FPS,
+  UFO_INCIDENCE,
+} from './constants/constants';
 
 @Component({
   selector: 'app-asteroid-game',
@@ -27,139 +33,11 @@ export class AsteroidGameComponent implements AfterViewInit {
   private canvasElement: HTMLCanvasElement;
 
   //------------------------------------
-  // CONFIG
-  //------------------------------------
-
-  // Default weapon
-  public WEPON_DEFAULT = {
-    // Weapon name
-    name: 'NORMAL BEAM',
-    // Damage dealt 0 ~ 1
-    power: 0.3,
-    // Bullet speed
-    speed: 3,
-    // Bullet length
-    length: 10,
-    // Bullet width
-    width: 1,
-    // The color of the bullet, in the case of special weapons, reflected in the color of the item, specified by CSS color
-    color: 'white',
-    // Fire rate
-    shootingInterval: 1000 * 0.35,
-    // true
-    // explosion
-    // Indicates whether the bullet
-    // If true, will not disappear even if it lands
-    // If explosion is specified, it takes precedence.
-    through: false,
-    // Range attack after landing due to explosion
-    // Specify with an object that has the following properties:
-    // { range: Explosion range, speed: Explosion speed }
-    // * The power of range attacks is half the basic power of weapons
-    explosion: false,
-  };
-
-  // Special weapon array, Randomly appear when you destroy a UFO
-  public WEPON_SPECIAL = [
-    {
-      name: 'TINY BEAM',
-      power: 0.1,
-      speed: 10,
-      length: 5,
-      width: 1,
-      color: 'rgb(131, 224, 8)',
-      shootingInterval: 1000 * 0.1,
-      through: false,
-      explosion: false,
-    },
-    {
-      name: 'BLASTER',
-      power: 1,
-      speed: 3,
-      length: 15,
-      width: 3,
-      color: 'rgb(244, 0, 122)',
-      shootingInterval: 1000 * 0.3,
-      through: false,
-      explosion: false,
-    },
-    {
-      name: 'LASER',
-      power: 0.2,
-      speed: 35,
-      length: 200,
-      width: 2,
-      color: 'rgb(138, 227, 252)',
-      shootingInterval: 1000 * 0.6,
-      through: true,
-      explosion: false,
-    },
-    {
-      name: 'EXPLOSION BEAM',
-      power: 0.15,
-      speed: 15,
-      length: 10,
-      width: 2,
-      color: 'rgb(255, 153, 0)',
-      shootingInterval: 1000 * 0.5,
-      through: false,
-      explosion: {
-        range: 100,
-        speed: 4.5,
-      },
-    } /*
-  ,{
-    name: 'INSANE BEAM',
-    power: 0.035,
-    speed: 7.5,
-    length: 5,
-    color: 'rgb(255, 246, 0)',
-    width: 2,
-    shootingInterval: 1000 * 0.015,
-    through: true,
-    explosion: false,
-    explosion: {
-      range: 75,
-      speed: 2
-    }
-  }//*/,
-  ];
-  public ASTEROID_MAX_SIZE = 80;
-  public ASTEROID_MIN_SIZE = 5;
-  public ASTEROID_MAX_NUM = 75;
-  public ASTEROID_SPAWN_TIME = 350;
-  public SHIP_SPEED = 1.5;
-  public UFO_SPEED = 2;
-  public ITEM_SPEED = 0.5;
-
-  public UFO_INCIDENCE = 0.0035;
-
-  public SPECIAL_WEPON_TIME = 1000 * 20;
-
-  public SCORE = {
-    ASTEROID_DAMAGE: 10,
-    ASTEROID_DESTROY: 50,
-    UFO_DAMAGE: 0,
-    UFO_DESTROY: 300,
-  };
-
-  //------------------------------------
-  // CONSTANTS
-  //------------------------------------
-
-  public PI = Math.PI;
-  public TWO_PI = this.PI * 2;
-  public DEG_TO_RAD = this.PI / 180;
-  public FPS = 60;
-
-  //------------------------------------
   // Variables
   //------------------------------------
 
-  // private canvas;
   private canvasWidth;
   private canvasHeight;
-  // private context;
   private mouse;
   private isMouseDown = false;
   private ship; // Ship
@@ -244,7 +122,7 @@ export class AsteroidGameComponent implements AfterViewInit {
       );
     }
 
-    setInterval(this.loop.bind(this), 1000 / this.FPS);
+    setInterval(this.loop.bind(this), 1000 / FPS);
   }
 
   //------------------------------------
@@ -317,8 +195,8 @@ export class AsteroidGameComponent implements AfterViewInit {
       // Spawn
 
       if (
-        now - this.asteroidLastSpawn > this.ASTEROID_SPAWN_TIME &&
-        this.asteroids.length < this.ASTEROID_MAX_NUM
+        now - this.asteroidLastSpawn > ASTEROID_SPAWN_TIME &&
+        this.asteroids.length < ASTEROID_MAX_NUM
       ) {
         this.asteroids.push(
           Asteroid.spawn(this.canvasWidth, this.canvasHeight)
@@ -326,7 +204,7 @@ export class AsteroidGameComponent implements AfterViewInit {
         this.asteroidLastSpawn = now;
       }
 
-      if (!this.ufo && !this.item && Math.random() < this.UFO_INCIDENCE) {
+      if (!this.ufo && !this.item && Math.random() < UFO_INCIDENCE) {
         this.ufo = Ufo.spawn(this.canvasWidth, this.canvasHeight);
       }
 

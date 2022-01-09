@@ -1,19 +1,15 @@
+import {
+  ASTEROID_MAX_SIZE,
+  ASTEROID_MIN_SIZE,
+  DEG_TO_RAD,
+  PI,
+  SCORE,
+  TWO_PI,
+} from '../constants/constants';
 import { HelperFunctions } from '../helpers/helper-functions';
 import { Path } from './path.model';
 import { Point } from './point.model';
 import { Splinter } from './splinter.model';
-
-const PI = Math.PI;
-const TWO_PI = PI * 2;
-const DEG_TO_RAD: number = PI / 180;
-const ASTEROID_MAX_SIZE = 80;
-const ASTEROID_MIN_SIZE = 5;
-const SCORE = {
-  ASTEROID_DAMAGE: 10,
-  ASTEROID_DESTROY: 50,
-  UFO_DAMAGE: 0,
-  UFO_DESTROY: 300,
-};
 
 /**
  * Asteroid

@@ -1,15 +1,8 @@
+import { SCORE, UFO_SPEED } from '../constants/constants';
 import { HelperFunctions } from '../helpers/helper-functions';
 import { Path } from './path.model';
 import { Point } from './point.model';
 import { Splinter } from './splinter.model';
-
-const SCORE = {
-  ASTEROID_DAMAGE: 10,
-  ASTEROID_DESTROY: 50,
-  UFO_DAMAGE: 0,
-  UFO_DESTROY: 300,
-};
-const UFO_SPEED = 2;
 
 /**
  * Ufo
