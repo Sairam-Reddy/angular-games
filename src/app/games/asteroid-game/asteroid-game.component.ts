@@ -56,16 +56,6 @@ export class AsteroidGameComponent implements AfterViewInit {
   private debriLastSpawn = 0;
   private fieldRange;
 
-  // private dom = {
-  //   menu: null,
-  //   title: null,
-  //   message: null,
-  //   tweet: null,
-  //   start: null,
-  //   score: null,
-  //   wepon: null,
-  // };
-
   public ngAfterViewInit(): void {
     this.canvasElement = this.graphCanvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
@@ -77,14 +67,6 @@ export class AsteroidGameComponent implements AfterViewInit {
 
     this.mouse = new Point();
 
-    // this.dom.menu = document.getElementById('menu');
-    // this.dom.title = document.getElementById('title');
-    // this.dom.message = document.getElementById('message');
-    // this.dom.start = document.getElementById('start');
-    // this.dom.score = document.getElementById('score');
-    // this.dom.wepon = document.getElementById('wepon');
-
-    // this.dom.start.addEventListener('click', this.start.bind(this), false);
     this.canvasElement.addEventListener(
       'mousemove',
       this.mouseMove.bind(this),
@@ -131,7 +113,6 @@ export class AsteroidGameComponent implements AfterViewInit {
   public start(e) {
     this.play();
     this.gamePlayed = true;
-    // this.dom.menu.style.display = 'none';
     e.preventDefault();
   }
 
@@ -249,11 +230,6 @@ export class AsteroidGameComponent implements AfterViewInit {
       this.asteroids.eachUpdate(this.fieldRange);
 
       this.splinters.eachUpdate(this.fieldRange);
-
-      // Display
-
-      // this.dom.wepon.innerHTML = this.ship.currentWepon.name;
-      // this.dom.score.innerHTML = this.score;
     }
 
     // Draw
@@ -343,26 +319,11 @@ export class AsteroidGameComponent implements AfterViewInit {
   private gameOver() {
     this.ship.destroy();
     this.isPlay = false;
-    // this.dom.title.innerHTML = 'GAME OVER!';
-    // this.dom.message.innerHTML = 'YOUR SCORE ' + this.score + ' POINTS<br />';
-    // this.dom.message.appendChild(this.tweetLink());
-    // this.dom.menu.style.display = 'block';
   }
 
   public tweetLink() {
     var exc = this.score < 1000 ? '...' : this.score > 3000 ? '!!!' : '!';
-    // if (!this.dom.tweet) {
-    //   this.dom.tweet = document.createElement('a');
-    //   this.dom.tweet.id = 'tweet';
-    //   this.dom.tweet.innerHTML = 'TWEET YOUR SCORE';
-    // }
-    // this.dom.tweet.href =
-    //   'https://twitter.com/intent/tweet?url=https://codepen.io/akm2/pen/eYYyELr&text=SCORE ' +
-    //   this.score +
-    //   ' PTS' +
-    //   exc +
-    //   ' - ASTEROIDS';
-    // this.dom.tweet.target = '_blank';
+
     return (
       'https://twitter.com/intent/tweet?url=https://codepen.io/akm2/pen/eYYyELr&text=SCORE ' +
       this.score +
