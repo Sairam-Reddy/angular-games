@@ -12,6 +12,13 @@ const routes: Routes = [
         (m) => m.ArrowDefenceGameModule
       ),
   },
+  {
+    path: 'asteroid-game',
+    loadChildren: () =>
+      import('./games/asteroid-game/asteroid-game.module').then(
+        (m) => m.AsteroidGameModule
+      ),
+  },
 ];
 
 @NgModule({
