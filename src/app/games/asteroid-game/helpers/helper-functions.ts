@@ -1,3 +1,7 @@
+//------------------------------------
+// UTILS
+//------------------------------------
+
 export class HelperFunctions {
   public static extend(...args: Array<any>) {
     var target = args[0] || {},
