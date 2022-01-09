@@ -1,10 +1,11 @@
 <div class="container" (window:resize)="onResize()">
-  <canvas #graphCanvas class="canvas" width="1280" height="720"></canvas>
-</div>
-
-<div *ngIf="stopGame" class="fixed-container">
-  <div class="bg-white">
-    <p>Game over !!!</p>
-    <button (click)="restart()">Restart Game</button>
+  <canvas #graphCanvas class="canvas" width="1280" height="720"> </canvas>
+  <ul id="hud">
+    <li class="score">SCORE: <span class="score">0</span></li>
+  </ul>
+  <div *ngIf="stopGame" class="menu">
+    <h2 class="title">GAME OVER!</h2>
+    <div class="message">YOUR SCORE: 45</div>
+    <a href="#" class="start" (click)="restart()">START</a>
   </div>
 </div>
