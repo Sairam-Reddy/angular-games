@@ -1,3 +1,12 @@
+::ng-deep {
+  body {
+    background-color: #000000;
+    color: #fff;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
 canvas {
   cursor: crosshair;
   position: absolute;
