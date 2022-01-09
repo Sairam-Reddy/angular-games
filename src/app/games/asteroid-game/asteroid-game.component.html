@@ -1,20 +1,20 @@
 <div class="container">
   <canvas #graphCanvas></canvas>
-  <ul id="hud">
+  <ul class="hud">
     <li class="score">
-      SCORE: <span id="score">{{ score }}</span>
+      SCORE: <span>{{ score }}</span>
     </li>
     <li *ngIf="ship">
       WEPON: <span id="wepon">{{ ship.currentWepon.name }}</span>
     </li>
   </ul>
-  <div id="menu">
-    <h2 *ngIf="!isPlay && gamePlayed" id="title">GAME OVER!</h2>
-    <div *ngIf="!isPlay && gamePlayed" id="message">
+  <div class="score-menu">
+    <h2 *ngIf="!isPlay && gamePlayed" class="score-title">GAME OVER!</h2>
+    <div *ngIf="!isPlay && gamePlayed" class="score-message">
       YOUR SCORE {{ score }} POINTS
       <br />
-      <a id="tweet" [href]="tweetLink()" target="_blank">TWEET YOUR SCORE</a>
+      <a class="tweet" [href]="tweetLink()" target="_blank">TWEET YOUR SCORE</a>
     </div>
-    <a *ngIf="!isPlay" id="start" (click)="start($event)">START</a>
+    <a *ngIf="!isPlay" class="start-button" (click)="start($event)">START</a>
   </div>
 </div>

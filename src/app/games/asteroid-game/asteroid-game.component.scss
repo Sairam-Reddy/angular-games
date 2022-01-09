@@ -18,7 +18,7 @@ a {
   cursor: pointer;
 }
 
-#menu {
+.score-menu {
   position: absolute;
   top: 50%;
   margin-top: -45px;
@@ -27,22 +27,22 @@ a {
   display: block;
 }
 
-#start {
+.start-button {
   font-size: 20px;
   font-weight: bold;
 }
 
-#title {
+.score-title {
   font-size: 24px;
   margin-bottom: 15px;
 }
 
-#message {
+.score-message {
   font-size: 14px;
   margin-bottom: 30px;
 }
 
-a#tweet {
+.tweet {
   color: white;
   font-size: 11px;
   display: inline-block;
@@ -50,33 +50,35 @@ a#tweet {
   padding: 5px 10px;
   background-color: transparent;
   border: 1px solid white;
+
+  &:hover {
+    color: black;
+    background-color: white;
+  }
 }
 
-a#tweet:hover {
-  color: black;
-  background-color: white;
-}
-
-#hud {
+.hud {
   position: absolute;
   top: 10px;
   left: 10px;
   list-style: none;
+
+  li {
+    float: left;
+    margin-right: 20px;
+  }
+
+  .score {
+    width: 120px;
+    overflow: hidden;
+  }
 }
 
-#menu,
-#hud {
+.score-menu,
+.hud {
   -moz-user-select: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
 }
 
-#hud li.score {
-  width: 120px;
-  overflow: hidden;
-}
 
-#hud li {
-  float: left;
-  margin-right: 20px;
-}
