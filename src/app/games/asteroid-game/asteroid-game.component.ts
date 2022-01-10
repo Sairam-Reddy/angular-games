@@ -328,6 +328,10 @@ export class AsteroidGameComponent implements AfterViewInit {
   private gameOver() {
     this.ship.destroy();
     this.isPlay = false;
+    if (this.ufo && !this.ufo.vanished) {
+      this.ufo.stopSound();
+    }
+
     this.gameOverAudio.play();
     if (this.score > this.highestScore) {
       this.highestScore = this.score;

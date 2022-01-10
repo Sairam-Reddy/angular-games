@@ -66,6 +66,11 @@ export class Ufo extends Point {
     this.destroyedSound.playbackRate = 3;
   }
 
+  public stopSound() {
+    this.appearSound.pause();
+    this.appearSound.currentTime = 0;
+  }
+
   public static spawn(canvasWidth, canvasHeight) {
     var x,
       y,
@@ -100,8 +105,7 @@ export class Ufo extends Point {
       splinterNum = 20;
       score = SCORE.UFO_DESTROY;
 
-      this.appearSound.pause();
-      this.appearSound.currentTime = 0;
+      this.stopSound();
 
       this.destroyedSound.play();
     } else {
