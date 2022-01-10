@@ -42,6 +42,8 @@ export class AsteroidGameComponent implements AfterViewInit {
   public gamePlayed = false;
   public ship; // Ship
 
+  private gameOverAudio: HTMLAudioElement;
+
   private canvasWidth;
   private canvasHeight;
   private mouse;
@@ -60,6 +62,12 @@ export class AsteroidGameComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     this.canvasElement = this.graphCanvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
+
+    this.gameOverAudio = new Audio();
+    this.gameOverAudio.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/asteroied-game-over.mp3';
+    this.gameOverAudio.load();
+    this.gameOverAudio.playbackRate = 2;
 
     this.fieldRange = new Range();
 
@@ -320,6 +328,7 @@ export class AsteroidGameComponent implements AfterViewInit {
   private gameOver() {
     this.ship.destroy();
     this.isPlay = false;
+    this.gameOverAudio.play();
     if (this.score > this.highestScore) {
       this.highestScore = this.score;
     }
