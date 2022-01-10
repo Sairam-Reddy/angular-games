@@ -22,18 +22,25 @@ export class Asteroid extends Point {
   public v;
   public path;
   public angleValue: number;
-  public sound: HTMLAudioElement;
+  public explosionSound: HTMLAudioElement;
+  public destroyedSound: HTMLAudioElement;
 
   public constructor(x, y, radius, angle) {
     super(x, y);
     this.radius = radius;
     this.angleValue = angle;
 
-    this.sound = new Audio();
-    this.sound.src =
+    this.explosionSound = new Audio();
+    this.explosionSound.src =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Asteroid-Explosion.mp3';
-    this.sound.load();
-    this.sound.playbackRate = 3;
+    this.explosionSound.load();
+    this.explosionSound.playbackRate = 3;
+
+    this.explosionSound = new Audio();
+    this.explosionSound.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Asterroid-is-destroyed.mp3';
+    this.explosionSound.load();
+    this.explosionSound.playbackRate = 3;
 
     this.make();
   }
@@ -95,13 +102,14 @@ export class Asteroid extends Point {
     var score = SCORE.ASTEROID_DAMAGE;
 
     this.radius -= ASTEROID_MAX_SIZE * damage;
-    this.sound.play();
 
     if (this.radius < ASTEROID_MIN_SIZE) {
       // ASTEROID_MIN_SIZE
       this.vanished = true;
+      this.destroyedSound.play();
       score = SCORE.ASTEROID_DESTROY;
     } else {
+      this.explosionSound.play();
       this.angleValue =
         this.angleValue + DEG_TO_RAD * HelperFunctions.randUniform(30, -30);
       this.make();
