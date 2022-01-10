@@ -17,6 +17,10 @@ export class Ufo extends Point {
   public hp = 100;
   public damagedBlink = 0;
 
+  public appearSound: HTMLAudioElement;
+  public explosionSound: HTMLAudioElement;
+  public destroyedSound: HTMLAudioElement;
+
   public constructor(x, y, canvasWidth, canvasHeight) {
     super(x, y);
 
@@ -40,6 +44,25 @@ export class Ufo extends Point {
       HelperFunctions.randUniform(canvasHeight)
     );
     this.v = new Point();
+
+    this.appearSound = new Audio();
+    this.appearSound.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/UFO-Aprearing.wav';
+    this.appearSound.load();
+    this.appearSound.playbackRate = 2;
+    this.appearSound.play();
+
+    this.explosionSound = new Audio();
+    this.explosionSound.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/UFO-Damage.mp3';
+    this.explosionSound.load();
+    this.explosionSound.playbackRate = 3;
+
+    this.destroyedSound = new Audio();
+    this.destroyedSound.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/UFO-Destroyed.mp3';
+    this.destroyedSound.load();
+    this.destroyedSound.playbackRate = 3;
   }
 
   public static spawn(canvasWidth, canvasHeight) {
@@ -75,6 +98,13 @@ export class Ufo extends Point {
       splinterRadius = 25;
       splinterNum = 20;
       score = SCORE.UFO_DESTROY;
+
+      this.appearSound.pause();
+      this.appearSound.currentTime = 0;
+
+      this.destroyedSound.play();
+    } else {
+      this.e.play();
     }
 
     splinters.push(new Splinter(this.x, this.y, splinterRadius, splinterNum));
