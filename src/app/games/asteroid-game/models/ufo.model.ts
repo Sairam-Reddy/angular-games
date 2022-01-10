@@ -50,6 +50,7 @@ export class Ufo extends Point {
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/UFO-Aprearing.wav';
     this.appearSound.load();
     this.appearSound.playbackRate = 2;
+    this.appearSound.loop = true;
     this.appearSound.play();
 
     this.explosionSound = new Audio();
@@ -104,7 +105,7 @@ export class Ufo extends Point {
 
       this.destroyedSound.play();
     } else {
-      this.e.play();
+      this.explosionSound.play();
     }
 
     splinters.push(new Splinter(this.x, this.y, splinterRadius, splinterNum));
