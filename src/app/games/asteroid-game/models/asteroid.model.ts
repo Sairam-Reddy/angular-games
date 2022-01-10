@@ -29,10 +29,11 @@ export class Asteroid extends Point {
     this.radius = radius;
     this.angleValue = angle;
 
+    this.sound = new Audio();
     this.sound.src =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Asteroid-Explosion.mp3';
     this.sound.load();
-    this.sound.playbackRate = 4;
+    this.sound.playbackRate = 3;
 
     this.make();
   }

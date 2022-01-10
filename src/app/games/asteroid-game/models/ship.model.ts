@@ -23,6 +23,7 @@ export class Ship extends Point {
   public specialWeponSetTime = 0;
   public died = false;
   public splinter = null;
+  public sound;
 
   private _referencePath;
   private v;
@@ -41,6 +42,12 @@ export class Ship extends Point {
     // A path indicating a reference point, used as a reference for rotation of path
     this._referencePath = new Path();
     this.v = new Point();
+
+    this.sound = new Audio();
+    this.sound.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Asteroid-Laser-Gun.mp3';
+    this.sound.load();
+    this.sound.playbackRate = 2;
 
     // Create hull drawing points
     var d = [0, 140, 180, 220],
@@ -68,7 +75,9 @@ export class Ship extends Point {
 
   // Beam is emitted, and if injection is possible, Beam is added to the Collection passed as an argument
   public fire(beams) {
-    if (!this.possibleShooting) return false;
+    if (!this.possibleShooting) {
+      return false;
+    }
     this.possibleShooting = false;
 
     var p = Point.polar(this.size, this.angle).add(this);
@@ -83,6 +92,8 @@ export class Ship extends Point {
     setTimeout(function () {
       self.possibleShooting = true;
     }, beam.shootingInterval);
+
+    this.sound.play();
 
     beams.push(beam);
   }

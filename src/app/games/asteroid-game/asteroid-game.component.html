@@ -12,8 +12,9 @@
     <h2 *ngIf="!isPlay && gamePlayed" class="score-title">GAME OVER!</h2>
     <div *ngIf="!isPlay && gamePlayed" class="score-message">
       YOUR SCORE {{ score }} POINTS
-      <br />
-      <a class="tweet" [href]="tweetLink()" target="_blank">TWEET YOUR SCORE</a>
+    </div>
+    <div *ngIf="!isPlay && gamePlayed" class="score-message">
+      HIGHEST SCORE {{ score }} POINTS
     </div>
     <a *ngIf="!isPlay" class="start-button" (click)="start($event)">START</a>
   </div>

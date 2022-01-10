@@ -37,6 +37,7 @@ export class AsteroidGameComponent implements AfterViewInit {
   //------------------------------------
 
   public score = 0;
+  public highestScore = 0;
   public isPlay = false;
   public gamePlayed = false;
   public ship; // Ship
@@ -319,6 +320,9 @@ export class AsteroidGameComponent implements AfterViewInit {
   private gameOver() {
     this.ship.destroy();
     this.isPlay = false;
+    if (this.score > this.highestScore) {
+      this.highestScore = this.score;
+    }
   }
 
   public tweetLink() {
