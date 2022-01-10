@@ -36,11 +36,11 @@ export class Asteroid extends Point {
     this.explosionSound.load();
     this.explosionSound.playbackRate = 3;
 
-    this.explosionSound = new Audio();
-    this.explosionSound.src =
+    this.destroyedSound = new Audio();
+    this.destroyedSound.src =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Asterroid-is-destroyed.mp3';
-    this.explosionSound.load();
-    this.explosionSound.playbackRate = 3;
+    this.destroyedSound.load();
+    this.destroyedSound.playbackRate = 3;
 
     this.make();
   }
