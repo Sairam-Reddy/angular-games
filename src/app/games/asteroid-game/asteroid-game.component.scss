@@ -65,13 +65,12 @@ a {
 
   li {
     float: left;
+    width: auto;
     margin-right: 20px;
-  }
-
-  .score {
-    width: 120px;
     overflow: hidden;
   }
+
+  
 }
 
 .score-menu,

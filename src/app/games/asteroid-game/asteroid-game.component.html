@@ -4,9 +4,10 @@
     <li class="score">
       SCORE: <span>{{ score }}</span>
     </li>
-    <li *ngIf="ship">
-      WEPON: <span id="wepon">{{ ship.currentWepon.name }}</span>
+    <li class="score">
+      HIGHEST SCORE: <span>{{ highestScore }}</span>
     </li>
+    <li *ngIf="ship">WEPON: {{ ship.currentWepon.name }}</li>
   </ul>
   <div class="score-menu">
     <h2 *ngIf="!isPlay && gamePlayed" class="score-title">GAME OVER!</h2>
