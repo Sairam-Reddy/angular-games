@@ -117,8 +117,8 @@ export const TWO_PI = PI * 2;
 export const DEG_TO_RAD: number = PI / 180;
 
 export const SCORE = {
-  ASTEROID_DAMAGE: 10,
-  ASTEROID_DESTROY: 50,
+  ASTEROID_DAMAGE: 100,
+  ASTEROID_DESTROY: 200,
   UFO_DAMAGE: 0,
   UFO_DESTROY: 300,
 };

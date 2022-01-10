@@ -22,11 +22,17 @@ export class Asteroid extends Point {
   public v;
   public path;
   public angleValue: number;
+  public sound: HTMLAudioElement;
 
   public constructor(x, y, radius, angle) {
     super(x, y);
     this.radius = radius;
     this.angleValue = angle;
+
+    this.sound.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Asteroid-Explosion.mp3';
+    this.sound.load();
+    this.sound.playbackRate = 4;
 
     this.make();
   }
@@ -88,6 +94,7 @@ export class Asteroid extends Point {
     var score = SCORE.ASTEROID_DAMAGE;
 
     this.radius -= ASTEROID_MAX_SIZE * damage;
+    this.sound.play();
 
     if (this.radius < ASTEROID_MIN_SIZE) {
       // ASTEROID_MIN_SIZE
