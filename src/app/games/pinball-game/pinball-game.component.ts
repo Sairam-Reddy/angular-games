@@ -9,6 +9,7 @@ import * as Matter from 'matter-js';
 import { Vertices } from 'matter-js';
 import decomp = require('poly-decomp');
 import MatterAttractors = require('matter-attractors');
+import { PinballPaddleCollision } from './models/pinball-paddle-collision.model';
 
 @Component({
   selector: 'app-pinball-game',
@@ -381,12 +382,14 @@ export class PinballGameComponent implements AfterViewInit {
             break;
           case 'paddleLeft':
             if (!pair.bodyA.isStatic && pair.bodyA.parent.speed >= 10) {
-              console.log('hit left paddle');
+              const pinballLeftPaddleCollision = new PinballPaddleCollision();
+              pinballLeftPaddleCollision.sound.play();
             }
             break;
           case 'paddleRight':
             if (!pair.bodyA.isStatic && pair.bodyA.parent.speed >= 10) {
-              console.log('hit right paddle');
+              const pinballRightPaddleCollision = new PinballPaddleCollision();
+              pinballRightPaddleCollision.sound.play();
             }
             break;
         }
