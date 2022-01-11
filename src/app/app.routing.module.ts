@@ -19,6 +19,13 @@ const routes: Routes = [
         (m) => m.AsteroidGameModule
       ),
   },
+  {
+    path: 'pinball-game',
+    loadChildren: () =>
+      import('./games/pinball-game/pinball-game.module').then(
+        (m) => m.PinballGameModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,26 @@
+<div #elem class="container">
+  <div class="score current-score">
+    score<br /><span>{{ currentScore }}</span>
+  </div>
+  <div class="score high-score">
+    high score<br /><span>{{ highScore }}</span>
+  </div>
+  <button
+    class="trigger left-trigger"
+    (mousedown)="setLeftPaddleUp($event)"
+    (touchstart)="setLeftPaddleUp($event)"
+    (mouseup)="setLeftPaddleDown($event)"
+    (touchend)="setLeftPaddleDown($event)"
+  >
+    tap!
+  </button>
+  <button
+    class="trigger right-trigger"
+    (mousedown)="setRightPaddleUp($event)"
+    (touchstart)="setRightPaddleUp($event)"
+    (mouseup)="setRightPaddleDown($event)"
+    (touchend)="setRightPaddleDown($event)"
+  >
+    tap!
+  </button>
+</div>
