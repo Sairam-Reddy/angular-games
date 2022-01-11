@@ -85,7 +85,7 @@ export class PinballGameComponent implements AfterViewInit {
 
     this.pinballPlaySound = new Audio();
     this.pinballPlaySound.src =
-      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Pinball-M.mp3';
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Pinball-Ma.mp3';
     this.pinballPlaySound.load();
     this.pinballPlaySound.playbackRate = 1;
     this.pinballPlaySound.loop = true;
