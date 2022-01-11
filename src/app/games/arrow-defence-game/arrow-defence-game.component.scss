@@ -1,17 +1,14 @@
-::ng-deep {
-  body {
-    background: #000000;
-    margin: 0;
-    padding: 0;
-  }
+:host {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  position: re;
 }
 
-:host {
-  position: relative;
-  flex-grow: 1;
-  height: 100vh;
-  display: flex;
-  align-items: center;
+.game-description {
+  margin-bottom: 20px;
 }
 
 .container {
