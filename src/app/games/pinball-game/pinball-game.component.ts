@@ -89,6 +89,7 @@ export class PinballGameComponent implements AfterViewInit {
     this.pinballPlaySound.load();
     this.pinballPlaySound.playbackRate = 1;
     this.pinballPlaySound.loop = true;
+    this.pinballPlaySound.play();
 
     this.load();
   }
