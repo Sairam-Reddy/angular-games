@@ -134,7 +134,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.canvasElement.style.width = cw + 'px';
       this.canvasElement.style.height =
         Math.floor((cw * this.stage.h) / this.stage.w) + 'px';
-      this.canvasElement.style.marginLeft = this.loffset + 'px';
+      // this.canvasElement.style.marginLeft = this.loffset + 'px';
       // this.canvasElement.style.marginTop = this.toffset + 'px';
     } else {
       this.scale = this.stage.h / ch;
@@ -144,7 +144,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.canvasElement.style.height = ch + 'px';
       this.canvasElement.style.width =
         Math.floor((ch * this.stage.w) / this.stage.h) + 'px';
-      this.canvasElement.style.marginLeft = this.loffset + 'px';
+      // this.canvasElement.style.marginLeft = this.loffset + 'px';
       // this.canvasElement.style.marginTop = this.toffset + 'px';
     }
   }
