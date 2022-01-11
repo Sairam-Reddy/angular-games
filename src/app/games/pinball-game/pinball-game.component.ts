@@ -379,6 +379,16 @@ export class PinballGameComponent implements AfterViewInit {
           case 'bumper':
             this.pingBumper(pair.bodyA);
             break;
+          case 'paddleLeft':
+            if (!pair.bodyA.isStatic && pair.bodyA.parent.speed >= 10) {
+              console.log('hit left paddle');
+            }
+            break;
+          case 'paddleRight':
+            if (!pair.bodyA.isStatic && pair.bodyA.parent.speed >= 10) {
+              console.log('hit right paddle');
+            }
+            break;
         }
       }
     });
