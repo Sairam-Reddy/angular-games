@@ -42,6 +42,8 @@ export class PinballGameComponent implements AfterViewInit {
   public PADDLE_PULL = 0.002;
   public MAX_VELOCITY = 50;
 
+  private pinballPlaySound: HTMLAudioElement;
+
   // shared variables
   public currentScore = 0;
   public highScore = 0;
@@ -80,6 +82,13 @@ export class PinballGameComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     Matter.Common.setDecomp(decomp);
     Matter.use(MatterAttractors);
+
+    this.pinballPlaySound = new Audio();
+    this.pinballPlaySound.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Pinball-M.mp3';
+    this.pinballPlaySound.load();
+    this.pinballPlaySound.playbackRate = 1;
+    this.pinballPlaySound.loop = true;
 
     this.load();
   }
