@@ -26,6 +26,7 @@ export class Pacman {
   public stateChanged = true;
   public timerStart = null;
   public lastTime = 0;
+  public canvas = null;
   public ctx = null;
   public timer = null;
   public map: PacmanMap;
@@ -293,19 +294,22 @@ export class Pacman {
     }
   }
 
+  public resize(width, height) {
+    this.canvas.width = width;
+    this.canvas.height = heig
+  }
+
   public init(wrapper, root) {
-    var i,
-      len,
-      ghost,
-      blockSize = wrapper.offsetWidth / 19,
-      canvas = document.createElement('canvas');
+    let ghost;
+    let blockSize = wrapper.offsetWidth / 19;
+    this.canvas = document.createElement('canvas');
 
-    canvas.setAttribute('width', blockSize * 19 + 'px');
-    canvas.setAttribute('height', blockSize * 22 + 30 + 'px');
+    this.canvas.setAttribute('width', blockSize * 19 + 'px');
+    this.canvas.setAttribute('height', blockSize * 22 + 30 + 'px');
 
-    wrapper.appendChild(canvas);
+    wrapper.appendChild(this.canvas);
 
-    this.ctx = canvas.getContext('2d');
+    this.ctx = this.canvas.getContext('2d');
 
     this.audio = new PacmanAudio({ soundDisabled: this.soundDisabled });
     this.map = new PacmanMap(blockSize);

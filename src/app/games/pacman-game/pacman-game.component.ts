@@ -1,3 +1,4 @@
+import { typeSourceSpan } from '@angular/compiler/src/parse_util';
 import {
   AfterViewInit,
   Component,
@@ -23,10 +24,21 @@ export class PacmanGameComponent implements AfterViewInit {
 
   public pacman;
 
+  public constructor(private element: ElementRef) {}
+
   ngAfterViewInit(): void {
     this.pacman = new Pacman();
     const url =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/';
     this.pacman.init(this.pacmanElement.nativeElement, url);
+    window.addEventListener('resize', this.resize.bind(this), false);
+    this.resize();
+  }
+
+  private resize() {
+    this.pacman.resize(
+      this.element.nativeElement.offsetWidth,
+      this.element.nativeElement.offsetHeight
+    );
   }
 }
