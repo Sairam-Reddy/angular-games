@@ -93,7 +93,10 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
 
   private gameOverAudio: HTMLAudioElement;
 
-  public constructor(@Inject(DOCUMENT) private document: any) {}
+  public constructor(
+    @Inject(DOCUMENT) private document: any,
+    private element: ElementRef
+  ) {}
 
   public ngAfterViewInit(): void {
     this.canvasElement = this.graphCanvas.nativeElement;
@@ -124,19 +127,20 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   }
 
   public onResize(): void {
-    const cw = window.innerWidth;
-    const ch = window.innerHeight;
+    const cw = this.element.nativeElement.offsetWidth;
+    const ch = this.element.nativeElement.offsetHeight;
+
+    // const cw = window.innerWidth;
+    // const ch = window.innerHeight;
+
     if (cw <= (ch * this.stage.w) / this.stage.h) {
       this.portrait = true;
       this.scale = this.stage.w / cw;
       this.loffset = 0;
       this.toffset = Math.floor(ch - (cw * this.stage.h) / this.stage.w) / 2;
-      this.canvasElement.style.height = '100%';
-      this.canvasElement.style.width = '100%';
-
-      // this.canvasElement.style.width = cw + 'px';
-      // this.canvasElement.style.height =
-      Math.floor((cw * this.stage.h) / this.stage.w) + 'px';
+      this.canvasElement.style.width = cw + 'px';
+      this.canvasElement.style.height =
+        Math.floor((cw * this.stage.h) / this.stage.w) + 'px';
       // this.canvasElement.style.marginLeft = this.loffset + 'px';
       // this.canvasElement.style.marginTop = this.toffset + 'px';
     } else {
@@ -144,12 +148,9 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.portrait = false;
       this.loffset = Math.floor(cw - (ch * this.stage.w) / this.stage.h) / 2;
       this.toffset = 0;
-      this.canvasElement.style.height = '100%';
-      this.canvasElement.style.width = '100%';
-
-      // this.canvasElement.style.height = ch + 'px';
-      // this.canvasElement.style.width =
-      //   Math.floor((ch * this.stage.w) / this.stage.h) + 'px';
+      this.canvasElement.style.height = ch + 'px';
+      this.canvasElement.style.width =
+        Math.floor((ch * this.stage.w) / this.stage.h) + 'px';
       // this.canvasElement.style.marginLeft = this.loffset + 'px';
       // this.canvasElement.style.marginTop = this.toffset + 'px';
     }
