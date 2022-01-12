@@ -59,6 +59,8 @@ export class AsteroidGameComponent implements AfterViewInit {
   private debriLastSpawn = 0;
   private fieldRange;
 
+  public constructor(private element: ElementRef) {}
+
   public ngAfterViewInit(): void {
     this.canvasElement = this.graphCanvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
@@ -133,11 +135,11 @@ export class AsteroidGameComponent implements AfterViewInit {
     this.canvasElement.width =
       this.canvasWidth =
       this.fieldRange.right =
-        window.innerWidth;
+        this.element.nativeElement.offsetWidth;
     this.canvasElement.height =
       this.canvasHeight =
       this.fieldRange.bottom =
-        window.innerHeight;
+        this.element.nativeElement.offsetHeight;
 
     this.ctx.fillStyle = 'white';
     this.ctx.strokeStyle = 'white';

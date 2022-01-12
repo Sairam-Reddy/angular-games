@@ -131,9 +131,12 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.scale = this.stage.w / cw;
       this.loffset = 0;
       this.toffset = Math.floor(ch - (cw * this.stage.h) / this.stage.w) / 2;
-      this.canvasElement.style.width = cw + 'px';
-      this.canvasElement.style.height =
-        Math.floor((cw * this.stage.h) / this.stage.w) + 'px';
+      this.canvasElement.style.height = '100%';
+      this.canvasElement.style.width = '100%';
+
+      // this.canvasElement.style.width = cw + 'px';
+      // this.canvasElement.style.height =
+      Math.floor((cw * this.stage.h) / this.stage.w) + 'px';
       // this.canvasElement.style.marginLeft = this.loffset + 'px';
       // this.canvasElement.style.marginTop = this.toffset + 'px';
     } else {
@@ -141,9 +144,12 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.portrait = false;
       this.loffset = Math.floor(cw - (ch * this.stage.w) / this.stage.h) / 2;
       this.toffset = 0;
-      this.canvasElement.style.height = ch + 'px';
-      this.canvasElement.style.width =
-        Math.floor((ch * this.stage.w) / this.stage.h) + 'px';
+      this.canvasElement.style.height = '100%';
+      this.canvasElement.style.width = '100%';
+
+      // this.canvasElement.style.height = ch + 'px';
+      // this.canvasElement.style.width =
+      //   Math.floor((ch * this.stage.w) / this.stage.h) + 'px';
       // this.canvasElement.style.marginLeft = this.loffset + 'px';
       // this.canvasElement.style.marginTop = this.toffset + 'px';
     }
