@@ -26,6 +26,13 @@ const routes: Routes = [
         (m) => m.PinballGameModule
       ),
   },
+  {
+    path: 'pacman-game',
+    loadChildren: () =>
+      import('./games/pacman-game/pacman-game.module').then(
+        (m) => m.PacmanGameModule
+      ),
+  },
 ];
 
 @NgModule({
