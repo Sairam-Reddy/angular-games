@@ -296,7 +296,7 @@ export class Pacman {
 
   public resize(width, height) {
     this.canvas.width = width;
-    this.canvas.height = heig
+    this.canvas.height = height
   }
 
   public init(wrapper, root) {
