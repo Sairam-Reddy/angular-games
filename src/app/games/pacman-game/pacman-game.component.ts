@@ -26,7 +26,7 @@ export class PacmanGameComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.pacman = new Pacman();
     const url =
-      'https://stackblitz.com/files/angular-cfm7dq/github/Sairam-Reddy/angular-pacman-game/master/src/assets/';
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/';
     this.pacman.init(this.pacmanElement.nativeElement, url);
   }
 }
