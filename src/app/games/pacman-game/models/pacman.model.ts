@@ -294,11 +294,6 @@ export class Pacman {
     }
   }
 
-  public resize(width, height) {
-    this.canvas.width = width;
-    this.canvas.height = height
-  }
-
   public init(wrapper, root) {
     let ghost;
     let blockSize = wrapper.offsetWidth / 19;
