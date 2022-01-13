@@ -98,7 +98,7 @@ export class PacmanUser {
   }
 
   public nextSquare(x, dir) {
-    var rem = x % 10;
+    l rem = x % 10;
     if (rem === 0) {
       return x;
     } else if (dir === RIGHT || dir === DOWN) {
@@ -127,10 +127,10 @@ export class PacmanUser {
   }
 
   public move(ctx) {
-    var npos = null,
-      nextWhole = null,
-      oldPosition = this.position,
-      block = null;
+    let npos = null;
+    let nextWhole = null;
+    let oldPosition = this.position;
+    let block = null;
 
     if (this.due !== this.direction) {
       npos = this.getNewCoord(this.due, this.position);
@@ -200,7 +200,7 @@ export class PacmanUser {
   }
 
   public isMidSquare(x) {
-    var rem = x % 10;
+    const rem = x % 10;
     return rem > 3 || rem < 7;
   }
 
@@ -218,8 +218,8 @@ export class PacmanUser {
   }
 
   public drawDead(ctx, amount) {
-    var size = this.map.blockSize,
-      half = size / 2;
+    let size = this.map.blockSize;
+    let half = size / 2;
 
     if (amount >= 1) {
       return;
@@ -245,8 +245,8 @@ export class PacmanUser {
   }
 
   public draw(ctx) {
-    var s = this.map.blockSize,
-      angle = this.calcAngle(this.direction, this.position);
+    let s = this.map.blockSize;
+    let angle = this.calcAngle(this.direction, this.position);
 
     ctx.fillStyle = '#FFFF00';
 
