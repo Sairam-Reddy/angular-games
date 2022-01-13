@@ -1,5 +1,6 @@
 import {
   COUNTDOWN,
+  DOWN,
   DYING,
   EATEN_PAUSE,
   KEY,
@@ -9,7 +10,6 @@ import {
   PLAYING,
   RIGHT,
   UP,
-  
   WAITING,
 } from '../constants/pacman.constants';
 import { Ghost } from './ghost.model';
@@ -423,18 +423,14 @@ export class Pacman {
       /*most significant*/
       if (xDiff > 0) {
         this.user.setDirection(LEFT);
-        console.log('left swipe');
       } else {
         this.user.setDirection(RIGHT);
-        console.log('right swipe');
       }
     } else {
       if (yDiff > 0) {
         this.user.setDirection(UP);
-        console.log('up swipe');
       } else {
         this.user.setDirection(DOWN);
-        console.log('down swipe');
       }
     }
     /* reset values */
