@@ -437,4 +437,19 @@ export class Pacman {
     this.xDown = null;
     this.yDown = null;
   }
+
+  public destory(): void {
+    if (this.timer) {
+      window.clearInterval(this.timer);
+    }
+
+    if (this.audio) {
+      this.audio.pause();
+    }
+
+    window.removeEventListener('keydown', this.keyDown);
+    window.removeEventListener('keypress', this.keyPress);
+    window.removeEventListener('touchstart', this.handleTouchStart);
+    window.removeEventListener('touchmove', this.handleTouchMove);
+  }
 }
