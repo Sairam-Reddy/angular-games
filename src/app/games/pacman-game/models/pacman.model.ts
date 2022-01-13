@@ -9,6 +9,7 @@ import {
   PLAYING,
   RIGHT,
   UP,
+  
   WAITING,
 } from '../constants/pacman.constants';
 import { Ghost } from './ghost.model';
