@@ -3,9 +3,12 @@ import {
   DYING,
   EATEN_PAUSE,
   KEY,
+  LEFT,
   PACMAN,
   PAUSE,
   PLAYING,
+  RIGHT,
+  UP,
   WAITING,
 } from '../constants/pacman.constants';
 import { Ghost } from './ghost.model';
@@ -405,7 +408,7 @@ export class Pacman {
   }
 
   public handleTouchMove(evt) {
-    if (!this.xDown || !this.yDown) {
+    if (!this.xDown || !this.yDown || !this.user) {
       return;
     }
 
@@ -418,19 +421,19 @@ export class Pacman {
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       /*most significant*/
       if (xDiff > 0) {
-        /* right swipe */
-        console.log('right swipe');
-      } else {
-        /* left swipe */
+        this.user.setDirection(LEFT);
         console.log('left swipe');
+      } else {
+        this.user.setDirection(RIGHT);
+        console.log('right swipe');
       }
     } else {
       if (yDiff > 0) {
-        /* down swipe */
-        console.log('down swipe');
-      } else {
-        /* up swipe */
+        this.user.setDirection(UP);
         console.log('up swipe');
+      } else {
+        this.user.setDirection(DOWN);
+        console.log('down swipe');
       }
     }
     /* reset values */
