@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
   ViewChild,
 } from '@angular/core';
 import * as Matter from 'matter-js';
@@ -16,7 +17,7 @@ import { PinballPaddleCollision } from './models/pinball-paddle-collision.model'
   templateUrl: './pinball-game.component.html',
   styleUrls: ['./pinball-game.component.scss'],
 })
-export class PinballGameComponent implements AfterViewInit {
+export class PinballGameComponent implements AfterViewInit, OnDestroy {
   @ViewChild('elem') elem: ElementRef;
 
   // constants
@@ -92,6 +93,10 @@ export class PinballGameComponent implements AfterViewInit {
     this.pinballPlaySound.play();
 
     this.load();
+  }
+
+  public ngOnDestroy(): void {
+    this.pinballPlaySound.pause()
   }
 
   private load() {
