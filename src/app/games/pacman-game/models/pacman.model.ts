@@ -33,6 +33,9 @@ export class Pacman {
   public user: PacmanUser;
   public stored = null;
 
+  private xDown = null;
+  private yDown = null;
+
   public constructor() {}
 
   public getTick() {
@@ -363,6 +366,17 @@ export class Pacman {
     document.addEventListener('keydown', this.keyDown.bind(this), true);
     document.addEventListener('keypress', this.keyPress.bind(this), true);
 
+    document.addEventListener(
+      'touchstart',
+      this.handleTouchStart.bind(this),
+      false
+    );
+    document.addEventListener(
+      'touchmove',
+      this.handleTouchMove.bind(this),
+      false
+    );
+
     if (this.timer) {
       window.clearInterval(this.timer);
       this.timer = window.setInterval(
@@ -375,5 +389,52 @@ export class Pacman {
         1000 / PACMAN.FPS
       );
     }
+  }
+
+  public getTouches(evt) {
+    return (
+      evt.touches || // browser API
+      evt.originalEvent.touches
+    ); // jQuery
+  }
+
+  public handleTouchStart(evt) {
+    const firstTouch = this.getTouches(evt)[0];
+    this.xDown = firstTouch.clientX;
+    this.yDown = firstTouch.clientY;
+  }
+
+  public handleTouchMove(evt) {
+    if (!this.xDown || !this.yDown) {
+      return;
+    }
+
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = this.xDown - xUp;
+    var yDiff = this.yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      /*most significant*/
+      if (xDiff > 0) {
+        /* right swipe */
+        console.log('right swipe');
+      } else {
+        /* left swipe */
+        console.log('left swipe');
+      }
+    } else {
+      if (yDiff > 0) {
+        /* down swipe */
+        console.log('down swipe');
+      } else {
+        /* up swipe */
+        console.log('up swipe');
+      }
+    }
+    /* reset values */
+    this.xDown = null;
+    this.yDown = null;
   }
 }

@@ -82,6 +82,10 @@ export class PacmanUser {
     return true;
   }
 
+  public setDirection(direction) {
+    this.due = direction;
+  }
+
   public getNewCoord(dir, current) {
     return {
       x: current.x + ((dir === LEFT && -2) || (dir === RIGHT && 2) || 0),
@@ -98,7 +102,7 @@ export class PacmanUser {
   }
 
   public nextSquare(x, dir) {
-    l rem = x % 10;
+    let rem = x % 10;
     if (rem === 0) {
       return x;
     } else if (dir === RIGHT || dir === DOWN) {
