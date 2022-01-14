@@ -281,9 +281,9 @@ export class Pacman {
     this.audio.play('eatpill');
     // this.timerStart = this.tick;
     // this.eatenCount = 0;
-    for (let i = 0; i < this.ghosts.length; i += 1) {
-      this.ghosts[i].makeEatable(this.ctx);
-    }
+    // for (let i = 0; i < this.ghosts.length; i += 1) {
+    //   this.ghosts[i].makeEatable(this.ctx);
+    // }
   }
 
   public completedLevel() {
