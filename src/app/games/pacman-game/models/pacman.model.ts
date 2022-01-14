@@ -279,8 +279,8 @@ export class Pacman {
 
   public eatenPill() {
     this.audio.play('eatpill');
-    this.timerStart = this.tick;
-    this.eatenCount = 0;
+    // this.timerStart = this.tick;
+    // this.eatenCount = 0;
     for (let i = 0; i < this.ghosts.length; i += 1) {
       this.ghosts[i].makeEatable(this.ctx);
     }
@@ -363,7 +363,6 @@ export class Pacman {
   }
 
   public loaded() {
-   
     document.addEventListener('keydown', this.keyDown.bind(this), true);
     document.addEventListener('keypress', this.keyPress.bind(this), true);
 
