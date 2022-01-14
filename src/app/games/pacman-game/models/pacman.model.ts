@@ -327,7 +327,7 @@ export class Pacman {
     for (let i = 0, len = this.ghostSpecs.length; i < len; i += 1) {
       ghost = new Ghost(this.map, this.ghostSpecs[i]);
       ghost.getTick = () => {
-        rthis.getTick();
+        rethis.getTick();
       };
       this.ghosts.push(ghost);
     }
