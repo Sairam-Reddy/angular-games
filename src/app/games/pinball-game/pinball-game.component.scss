@@ -17,7 +17,7 @@
 
   /* responsive scaling, because pinball tables are tall */
   @media (min-height: 0px) {
-    transform: scale(0.25);
+    transform: scale(0.2);
   }
   @media (min-height: 400px) {
     transform: scale(0.5);
