@@ -17,7 +17,7 @@
 
   /* Media Query for Mobile Devices */
   @media (max-width: 480px) {
-    transform: scale(0.25);
+    transform: scale(0.5);
   }
 
   /* Media Query for low resolution  Tablets, Ipads */
@@ -27,7 +27,7 @@
 
   /* Media Query for Tablets Ipads portrait mode */
   @media (min-width: 768px) and (max-width: 1024px) {
-    transform: scale(0.7);
+    transform: scale(0.75);
   }
 
   /* Media Query for Laptops and Desktops */
