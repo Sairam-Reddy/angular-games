@@ -148,7 +148,7 @@ export class Ghost {
     var inc = s / 10;
 
     var high = this.getTick() % 10 > 5 ? 3 : -3;
-    var low = this..getTick() % 10 > 5 ? -3 : 3;
+    var low = this.getTick() % 10 > 5 ? -3 : 3;
 
     ctx.fillStyle = this.getColour();
     ctx.beginPath();
