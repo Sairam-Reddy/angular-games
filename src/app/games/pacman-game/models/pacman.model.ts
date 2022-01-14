@@ -238,7 +238,7 @@ export class Pacman {
     } else if (this.state === WAITING && this.stateChanged) {
       this.stateChanged = false;
       this.map.draw(this.ctx);
-      this.dialog('Press N to start a New game');
+      this.dialog('Press N or tap to start a New game');
     } else if (
       this.state === EATEN_PAUSE &&
       this.tick - this.timerStart > PACMAN.FPS / 3
@@ -346,25 +346,23 @@ export class Pacman {
       ['eating2', root + 'audio/eating.short.' + extension],
     ];
 
-    this.load(audio_files, () => {
-      this.loaded();
-    });
+    this.load(audio_files);
+    this.loaded();
   }
 
-  public load(arr, callback) {
+  public load(arr) {
     if (arr.length === 0) {
-      callback();
     } else {
-      var x = arr.pop();
-      this.audio.load(x[0], x[1], () => {
-        this.load(arr, callback.bind(this));
-      });
+      for (let i = 0; i < arr.height; i += 1) {
+        var x = arr.pop();
+        this.audio.load(x[0], x[1]);
+      }
     }
   }
 
   public loaded() {
     if (this.state === WAITING) {
-      this.dialog('Press N to Start');
+      this.dialog('Press N  to Start');
     }
 
     document.addEventListener('keydown', this.keyDown.bind(this), true);
@@ -403,9 +401,13 @@ export class Pacman {
   }
 
   public handleTouchStart(evt) {
-    const firstTouch = this.getTouches(evt)[0];
-    this.xDown = firstTouch.clientX;
-    this.yDown = firstTouch.clientY;
+    if (this.state === WAITING) {
+      this.startNewGame();
+    } else {
+      const firstTouch = this.getTouches(evt)[0];
+      this.xDown = firstTouch.clientX;
+      this.yDown = firstTouch.clientY;
+    }
   }
 
   public handleTouchMove(evt) {

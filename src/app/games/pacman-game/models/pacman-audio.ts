@@ -10,11 +10,11 @@ export class PacmanAudio {
     this.game = game;
   }
 
-  public load(name, path, cb) {
+  public load(name, path) {
     var f = (this.files[name] = document.createElement('audio'));
 
     this.progressEvents[name] = (event) => {
-      this.progress(event, name, cb);
+      this.progress(event, name);
     };
 
     f.addEventListener(
@@ -28,15 +28,12 @@ export class PacmanAudio {
     f.pause();
   }
 
-  public progress(event, name, callback) {
-    // if (event.loaded === event.total && typeof callback === 'function') {
-      callback();
-      this.files[name].removeEventListener(
-        'canplaythrough',
-        this.progressEvents[name],
-        true
-      );
-    // }
+  public progress(event, name) {
+    this.files[name].removeEventListener(
+      'canplaythrough',
+      this.progressEvents[name],
+      true
+    );
   }
 
   public disableSound() {

@@ -1,5 +1,11 @@
 import { typeSourceSpan } from '@angular/compiler/src/parse_util';
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { Pacman } from './models/pacman.model';
 
 @Component({
@@ -28,6 +34,8 @@ export class PacmanGameComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.pacman.destroy()
+    if (this.pacman) {
+      this.pacman.destroy();
+    }
   }
 }
