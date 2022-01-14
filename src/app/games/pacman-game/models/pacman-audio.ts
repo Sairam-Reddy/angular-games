@@ -29,14 +29,14 @@ export class PacmanAudio {
   }
 
   public progress(event, name, callback) {
-    if (event.loaded === event.total ) {
+    // if (event.loaded === event.total && typeof callback === 'function') {
       callback();
       this.files[name].removeEventListener(
         'canplaythrough',
         this.progressEvents[name],
         true
       );
-    }
+    // }
   }
 
   public disableSound() {
