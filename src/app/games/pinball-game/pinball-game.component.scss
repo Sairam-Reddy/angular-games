@@ -15,21 +15,28 @@
   position: relative;
   line-height: 0;
 
-  /* responsive scaling, because pinball tables are tall */
-
-  @media screen and (min-width: 480px), screen and (min-height: 0px) {
+  /* Media Query for Mobile Devices */
+  @media (max-width: 480px) {
     transform: scale(0.25);
   }
 
-  @media screen and (min-width: 768px), screen and (min-height: 400px) {
+  /* Media Query for low resolution  Tablets, Ipads */
+  @media (min-width: 481px) and (max-width: 767px) {
     transform: scale(0.5);
   }
 
-  @media screen and (min-width: 992px), screen and (min-height: 00px) {
+  /* Media Query for Tablets Ipads portrait mode */
+  @media (min-width: 768px) and (max-width: 1024px) {
     transform: scale(0.7);
   }
 
-  @media screen and (min-width: 1200px), screen and (min-height: 800px) {
+  /* Media Query for Laptops and Desktops */
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    transform: scale(1);
+  }
+
+  /* Media Query for Large screens */
+  @media (min-width: 1281px) {
     transform: scale(1);
   }
 }
