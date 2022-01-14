@@ -29,7 +29,7 @@ export class PacmanAudio {
   }
 
   public progress(event, name, callback) {
-    if (event.loaded === event.total && typeof callback === 'function') {
+    if (event.loaded === event.total ) {
       callback();
       this.files[name].removeEventListener(
         'canplaythrough',
