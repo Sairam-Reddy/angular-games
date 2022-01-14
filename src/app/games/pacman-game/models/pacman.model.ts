@@ -319,11 +319,11 @@ export class Pacman {
 
     this.user.onCompletedLevel = () => {
       this.completedLevel();
-    }
+    };
 
     this.user.onEatenPill = () => {
       this.eatenPill();
-    }
+    };
 
     for (let i = 0, len = this.ghostSpecs.length; i < len; i += 1) {
       ghost = new Ghost(
@@ -335,7 +335,7 @@ export class Pacman {
     }
 
     this.map.draw(this.ctx);
-    this.dialog('Loading ...');
+    //this.dialog('Loading ...');
 
     var extension = 'mp3';
 
@@ -365,9 +365,8 @@ export class Pacman {
   public loaded() {
     if (this.state === WAITING) {
       this.dialog('Press N or tap to start a New game');
-    } else {
-
-      document.addEventListener('keydown', this.keyDown.bind(this), true);
+    }
+    document.addEventListener('keydown', this.keyDown.bind(this), true);
     document.addEventListener('keypress', this.keyPress.bind(this), true);
 
     document.addEventListener(
@@ -393,9 +392,6 @@ export class Pacman {
         1000 / PACMAN.FPS
       );
     }
-    }
-
-    
   }
 
   public getTouches(evt) {
