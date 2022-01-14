@@ -217,9 +217,9 @@ export class Ghost {
   }
 
   public move(ctx) {
-    var oldPos = this.position,
-      onGrid = this.onGridSquare(this.position),
-      npos = null;
+    let oldPos = this.position;
+    let onGrid = this.onGridSquare(this.position);
+    let npos = null;
 
     if (this.due !== this.direction) {
       npos = this.getNewCoord(this.due, this.position);
@@ -254,7 +254,7 @@ export class Ghost {
 
     this.position = npos;
 
-    var tmp = this.pane(this.position);
+    let tmp = this.pane(this.position);
     if (tmp) {
       this.position = tmp;
     }

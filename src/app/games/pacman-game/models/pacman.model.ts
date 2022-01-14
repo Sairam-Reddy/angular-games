@@ -71,7 +71,7 @@ export class Pacman {
 
   public startLevel() {
     this.user.resetPosition();
-    for (var i = 0; i < this.ghosts.length; i += 1) {
+    for (var i = 0; i < this.ghosts.length; i++) {
       this.ghosts[i].reset();
     }
     this.audio.play('start');
@@ -181,30 +181,29 @@ export class Pacman {
   public mainDraw() {
     let diff;
     let u;
-    let i;
-    let len;
+
     let nScore;
 
     this.ghostPos = [];
 
-    for (i = 0, len = this.ghosts.length; i < len; i += 1) {
+    for (let i = 0; i < this.ghosts.length; i++) {
       this.ghostPos.push(this.ghosts[i].move(this.ctx));
     }
     u = this.user.move(this.ctx);
 
-    for (i = 0, len = this.ghosts.length; i < len; i += 1) {
+    for (let i = 0; i < this.ghosts.length; i++) {
       this.redrawBlock(this.ghostPos[i].old);
     }
     this.redrawBlock(u.old);
 
-    for (i = 0, len = this.ghosts.length; i < len; i += 1) {
+    for (let i = 0; i < this.ghosts.length; i++) {
       this.ghosts[i].draw(this.ctx);
     }
     this.user.draw(this.ctx);
 
     this.userPos = u['new'];
 
-    for (i = 0, len = this.ghosts.length; i < len; i += 1) {
+    for (let i = 0; i < this.ghosts.length; i++) {
       if (this.collided(this.userPos, this.ghostPos[i]['new'])) {
         if (this.ghosts[i].isVunerable()) {
           this.audio.play('eatghost');
@@ -250,7 +249,7 @@ export class Pacman {
         this.loseLife();
       } else {
         this.redrawBlock(this.userPos);
-        for (let i = 0, len = this.ghosts.length; i < len; i += 1) {
+        for (let i = 0; i < this.ghosts.length; i++) {
           this.redrawBlock(this.ghostPos[i].old);
           this.ghostPos.push(this.ghosts[i].draw(this.ctx));
         }
