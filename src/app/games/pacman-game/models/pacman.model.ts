@@ -353,8 +353,8 @@ export class Pacman {
   public load(arr) {
     if (arr.length === 0) {
     } else {
-      for (let i = 0; i < arr.height; i += 1) {
-        var x = arr.pop();
+      for (let i = 0; i < arr.height; i++) {
+        var x = arr[i];
         this.audio.load(x[0], x[1]);
       }
     }
