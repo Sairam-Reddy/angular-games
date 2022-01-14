@@ -20,7 +20,7 @@ import { PacmanUser } from './pacman-user.model';
 export class Pacman {
   public state = WAITING;
   public audio: PacmanAudio = null;
-  public ghosts = [];
+  public ghosts: Array<Ghost> = [];
   public ghostSpecs = ['#00FFDE', '#FF0000', '#FFB8DE', '#FFB847'];
   public eatenCount = 0;
   public level = 0;
@@ -282,7 +282,7 @@ export class Pacman {
     this.timerStart = this.tick;
     this.eatenCount = 0;
     for (let i = 0; i < this.ghosts.length; i += 1) {
-      this.ghosts[i].makeEatable(this.ctx);
+      this.ghosts[i].makeEatable();
     }
   }
 
@@ -326,11 +326,10 @@ export class Pacman {
     };
 
     for (let i = 0, len = this.ghostSpecs.length; i < len; i += 1) {
-      ghost = new Ghost(
-        { getTick: this.getTick },
-        this.map,
-        this.ghostSpecs[i]
-      );
+      ghost = new Ghost(this.map, this.ghostSpecs[i]);
+      ghost.getTick = () => {
+        this.getTick();
+      };
       this.ghosts.push(ghost);
     }
 

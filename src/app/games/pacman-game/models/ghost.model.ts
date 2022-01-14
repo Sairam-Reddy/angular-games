@@ -8,12 +8,12 @@ export class Ghost {
   public eaten = null;
   public due = null;
 
-  public game;
+  public getTick: () => number;
+
   public map: PacmanMap;
   public colour;
 
-  public constructor(game, map, colour) {
-    this.game = game;
+  public constructor(map, colour) {
     this.map = map;
     this.colour = colour;
   }
@@ -86,12 +86,12 @@ export class Ghost {
 
   public makeEatable() {
     this.direction = this.oppositeDirection(this.direction);
-    this.eatable = this.game.getTick();
+    this.eatable = this.getTick();
   }
 
   public eat() {
     this.eatable = null;
-    this.eaten = this.game.getTick();
+    this.eaten = this.getTick();
   }
 
   public pointToCoord(x) {
@@ -114,13 +114,13 @@ export class Ghost {
   }
 
   public secondsAgo(tick) {
-    return (this.game.getTick() - tick) / PACMAN.FPS;
+    return (this.getTick() - tick) / PACMAN.FPS;
   }
 
   public getColour() {
     if (this.eatable) {
       if (this.secondsAgo(this.eatable) > 5) {
-        return this.game.getTick() % 20 > 10 ? '#FFFFFF' : '#0000BB';
+        return this.getTick() % 20 > 10 ? '#FFFFFF' : '#0000BB';
       } else {
         return '#0000BB';
       }
@@ -147,8 +147,8 @@ export class Ghost {
     var base = top + s - 3;
     var inc = s / 10;
 
-    var high = this.game.getTick() % 10 > 5 ? 3 : -3;
-    var low = this.game.getTick() % 10 > 5 ? -3 : 3;
+    var high = this.getTick() % 10 > 5 ? 3 : -3;
+    var low = this..getTick() % 10 > 5 ? -3 : 3;
 
     ctx.fillStyle = this.getColour();
     ctx.beginPath();
