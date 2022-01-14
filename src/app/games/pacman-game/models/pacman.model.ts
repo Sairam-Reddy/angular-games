@@ -363,9 +363,9 @@ export class Pacman {
   }
 
   public loaded() {
-    if (this.state === WAITING) {
-      this.dialog('Press N or tap to start a New game');
-    }
+    // if (this.state === WAITING) {
+    //   this.dialog('Press N or tap to start a New game');
+    // }
     document.addEventListener('keydown', this.keyDown.bind(this), true);
     document.addEventListener('keypress', this.keyPress.bind(this), true);
 
