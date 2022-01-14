@@ -16,17 +16,22 @@
   line-height: 0;
 
   /* responsive scaling, because pinball tables are tall */
-  @media (min-height: 0px) {
-    transform: scale(0.2);
+
+
+  @media screen and (min-width: 480px), screen and (min-height: 0px) {
+    transform: scale(0.25);
   }
-  @media (min-height: 400px) {
+
+  @media screen and (min-width: 768px), screen and (min-height: 400px) {
     transform: scale(0.5);
   }
-  @media (min-height: 600px) {
+
+  @media screen and (min-width: 992px), screen and (min-height: 600px) {
     transform: scale(0.75);
   }
-  @media (min-height: 800px) {
-    transform: scale(1);
+
+  @media screen and (min-width: 1200px), screen and (min-height: 800px) {
+    transform: scale(0.75);
   }
 }
 
