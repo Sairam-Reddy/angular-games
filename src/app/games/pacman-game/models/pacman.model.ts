@@ -315,13 +315,15 @@ export class Pacman {
 
     this.audio = new PacmanAudio({ soundDisabled: this.soundDisabled });
     this.map = new PacmanMap(blockSize);
-    this.user = new PacmanUser(
-      {
-        completedLevel: this.completedLevel,
-        eatenPill: this.eatenPill,
-      },
-      this.map
-    );
+    this.user = new PacmanUser(this.map);
+
+    this.user.onCompletedLevel = () => {
+      this.completedLevel();
+    }
+
+    this.user.onEatenPill = () => {
+      this.eatenPill();
+    }
 
     for (let i = 0, len = this.ghostSpecs.length; i < len; i += 1) {
       ghost = new Ghost(

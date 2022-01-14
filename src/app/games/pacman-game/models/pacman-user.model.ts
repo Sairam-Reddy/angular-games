@@ -18,11 +18,12 @@ export class PacmanUser {
   public score = 5;
   public keyMap = {};
 
-  public game;
+  public onCompletedLevel: () => void;
+  public onEatenPill: () => void;
+
   public map: PacmanMap;
 
-  public constructor(game, map) {
-    this.game = game;
+  public constructor(map) {
     this.map = map;
     this.keyMap[KEY.ARROW_LEFT] = LEFT;
     this.keyMap[KEY.ARROW_UP] = UP;
@@ -189,11 +190,11 @@ export class PacmanUser {
       this.eaten += 1;
 
       if (this.eaten === 182) {
-        this.game.completedLevel();
+        this.onCompletedLevel();
       }
 
       if (block === PACMAN.PILL) {
-        this.game.eatenPill();
+        this.onEatenPill();
       }
     }
 
