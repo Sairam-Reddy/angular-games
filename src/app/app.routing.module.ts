@@ -33,6 +33,13 @@ const routes: Routes = [
         (m) => m.PacmanGameModule
       ),
   },
+  {
+    path: 'tic-tac-toe-game',
+    loadChildren: () =>
+      import('./games/tic-tac-toe-game/tic-tac-toe-game.module').then(
+        (m) => m.TicTacToeGameModule
+      ),
+  },
 ];
 
 @NgModule({
