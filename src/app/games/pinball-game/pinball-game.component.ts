@@ -44,6 +44,7 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
   public MAX_VELOCITY = 50;
 
   private pinballPlaySound: HTMLAudioElement;
+  private pinballPaddleCollision: PinballPaddleCollision;
 
   // shared variables
   public currentScore = 0;
@@ -96,7 +97,10 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.pinballPlaySound.pause()
+    this.pinballPlaySound.pause();
+    if (this.pinballPaddleCollision) {
+      this.pinballPaddleCollision.sound.pause();
+    }
   }
 
   private load() {
@@ -397,14 +401,14 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
             break;
           case 'paddleLeft':
             if (!pair.bodyA.isStatic && pair.bodyA.parent.speed >= 10) {
-              const pinballLeftPaddleCollision = new PinballPaddleCollision();
-              pinballLeftPaddleCollision.sound.play();
+              this.pinballPaddleCollision = new PinballPaddleCollision();
+              this.pinballPaddleCollision.sound.play();
             }
             break;
           case 'paddleRight':
             if (!pair.bodyA.isStatic && pair.bodyA.parent.speed >= 10) {
-              const pinballRightPaddleCollision = new PinballPaddleCollision();
-              pinballRightPaddleCollision.sound.play();
+              this.pinballPaddleCollision = new PinballPaddleCollision();
+              this.pinballPaddleCollision.sound.play();
             }
             break;
         }
