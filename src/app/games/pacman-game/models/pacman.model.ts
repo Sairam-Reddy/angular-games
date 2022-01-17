@@ -147,7 +147,7 @@ export class Pacman {
       this.ctx.fillStyle = '#FFFF00';
       this.ctx.beginPath();
       this.ctx.moveTo(
-        190 + 25 * i + this.map.blockSize / 2,
+        180 + 25 * i + this.map.blockSize / 2,
         topLeft + 1 + this.map.blockSize / 2
       );
 
