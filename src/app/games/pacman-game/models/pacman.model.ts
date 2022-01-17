@@ -152,7 +152,7 @@ export class Pacman {
       );
 
       this.ctx.arc(
-        10 + 25 * i + this.map.blockSize / 2,
+        140 + 25 * i + this.map.blockSize / 2,
         topLeft - 4 + this.map.blockSize / 2,
         this.map.blockSize / 2,
         Math.PI * 0.25,
@@ -175,7 +175,7 @@ export class Pacman {
       10,
       textBase + 13
     );
-    this.ctx.fillText('Level: ' + this.level, 250, textBase + 13);
+    this.ctx.fillText('Level: ' + this.level, 240, textBase + 13);
   }
 
   public redrawBlock(pos) {
