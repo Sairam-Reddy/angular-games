@@ -116,7 +116,7 @@ export class Pacman {
     if (this.user.getLives() > 0) {
       this.startLevel();
     } else {
-      this.user.updateHighScore(this.user.getHighScore());
+      this.user.updateHighScore(this.user.getScore());
     }
   }
 
@@ -168,11 +168,7 @@ export class Pacman {
     this.ctx.fillStyle = '#FFFF00';
     this.ctx.font = '14px Calibri';
     this.ctx.fillText('Score: ' + this.user.getScore(), 30, textBase);
-    this.ctx.fillText(
-      'High Score: ' + this.user.getHighScore((),
-      100,
-      textBase
-    );
+    this.ctx.fillText('High Score: ' + this.user.getHighScore(), 100, textBase);
     this.ctx.fillText('Level: ' + this.level, 300, textBase);
   }
 
