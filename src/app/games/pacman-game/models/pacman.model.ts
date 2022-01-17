@@ -147,12 +147,12 @@ export class Pacman {
       this.ctx.fillStyle = '#FFFF00';
       this.ctx.beginPath();
       this.ctx.moveTo(
-        150 + 25 * i + this.map.blockSize / 2,
+        140 + 25 * i + this.map.blockSize / 2,
         topLeft - 4 + this.map.blockSize / 2
       );
 
       this.ctx.arc(
-        150 + 25 * i + this.map.blockSize / 2,
+        10 + 25 * i + this.map.blockSize / 2,
         topLeft - 4 + this.map.blockSize / 2,
         this.map.blockSize / 2,
         Math.PI * 0.25,
