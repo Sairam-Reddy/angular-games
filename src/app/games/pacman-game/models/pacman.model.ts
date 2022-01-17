@@ -175,7 +175,7 @@ export class Pacman {
       10,
       textBase + 13
     );
-    this.ctx.fillText('Level: ' + this.level, 270, textBase + 13);
+    this.ctx.fillText('Level: ' + this.level, 250, textBase + 13);
   }
 
   public redrawBlock(pos) {
