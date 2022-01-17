@@ -75,8 +75,6 @@ export class AsteroidGameComponent implements OnInit, AfterViewInit {
     this.canvasElement = this.graphCanvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
 
-    
-
     this.gameOverAudio = new Audio();
     this.gameOverAudio.src =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/asteroied-game-over.mp3';

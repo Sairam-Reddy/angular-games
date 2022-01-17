@@ -5,6 +5,7 @@ import {
   ElementRef,
   Inject,
   OnDestroy,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import { Bullet } from './models/bullet.model';
@@ -18,7 +19,7 @@ import { Stage } from './models/stage.model';
   templateUrl: './arrow-defence-game.component.html',
   styleUrls: ['./arrow-defence-game.component.scss'],
 })
-export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
+export class ArrowDefenceGameComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('graphCanvas') graphCanvas: ElementRef;
 
   public gameOver = false;
@@ -98,13 +99,17 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     private element: ElementRef
   ) {}
 
-  public ngAfterViewInit(): void {
+  public ngOnInit(): void  {
     const highestScore: number = JSON.parse(
       localStorage.getItem('arrow_defence_game_high_score')
     );
     if (highestScore) {
       this.highestScore = highestScore;
     }
+  }
+
+  public ngAfterViewInit(): void {
+   
 
     this.canvasElement = this.graphCanvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
