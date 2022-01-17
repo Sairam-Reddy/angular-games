@@ -120,7 +120,7 @@ export class Pacman {
         this.user.updateHighScore(this.user.getScore());
         localStorage.setItem(
           'pacman_game_high_score',
-          this.user.highScore.totring()
+          this.user.highScore.toString()
         );
       }
     }
@@ -315,6 +315,14 @@ export class Pacman {
 
   public init(wrapper, root) {
     let ghost;
+
+    const highestScore: number = JSON.parse(
+      localStorage.getItem('pacman_game_high_score')
+    );
+    if (highestScore) {
+      this.user.updateHighScore(highestScore);
+    }
+
     let blockSize = wrapper.offsetWidth / 19;
     this.canvas = document.createElement('canvas');
 
