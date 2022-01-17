@@ -147,13 +147,13 @@ export class Pacman {
       this.ctx.fillStyle = '#FFFF00';
       this.ctx.beginPath();
       this.ctx.moveTo(
-        180 + 25 * i + this.map.blockSize / 2,
-        topLeft + 1 + this.map.blockSize / 2
+        150 + 25 * i + this.map.blockSize / 2,
+        topLeft - 4 + this.map.blockSize / 2
       );
 
       this.ctx.arc(
-        10 + 25 * i + this.map.blockSize / 2,
-        topLeft + 1 + this.map.blockSize / 2,
+        150 + 25 * i + this.map.blockSize / 2,
+        topLeft - 4 + this.map.blockSize / 2,
         this.map.blockSize / 2,
         Math.PI * 0.25,
         Math.PI * 1.75,
@@ -169,9 +169,13 @@ export class Pacman {
 
     this.ctx.fillStyle = '#FFFF00';
     this.ctx.font = '14px Calibri';
-    this.ctx.fillText('Score: ' + this.user.getScore(), 15, textBase);
-    this.ctx.fillText('H Score: ' + this.user.getHighScore(), 90, textBase);
-    this.ctx.fillText('Level: ' + this.level, 270, textBase);
+    this.ctx.fillText('Score: ' + this.user.getScore(), 15, textBase + 13);
+    this.ctx.fillText(
+      'H Score: ' + this.user.getHighScore(),
+      10,
+      textBase + 13
+    );
+    this.ctx.fillText('Level: ' + this.level, 270, textBase + 13);
   }
 
   public redrawBlock(pos) {
