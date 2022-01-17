@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  OnInit,
   VERSION,
   ViewChild,
 } from '@angular/core';
@@ -26,7 +27,7 @@ import {
   templateUrl: './asteroid-game.component.html',
   styleUrls: ['./asteroid-game.component.scss'],
 })
-export class AsteroidGameComponent implements AfterViewInit {
+export class AsteroidGameComponent implements OnInit, AfterViewInit {
   @ViewChild('graphCanvas') graphCanvas: ElementRef;
 
   private ctx: CanvasRenderingContext2D;
@@ -61,16 +62,20 @@ export class AsteroidGameComponent implements AfterViewInit {
 
   public constructor(private element: ElementRef) {}
 
-  public ngAfterViewInit(): void {
-    this.canvasElement = this.graphCanvas.nativeElement;
-    this.ctx = this.canvasElement.getContext('2d');
-
+  public ngOnInit(): void {
     const highestScore: number = JSON.parse(
       localStorage.getItem('asteroid_game_high_score')
     );
     if (highestScore) {
       this.highestScore = highestScore;
     }
+  }
+
+  public ngAfterViewInit(): void {
+    this.canvasElement = this.graphCanvas.nativeElement;
+    this.ctx = this.canvasElement.getContext('2d');
+
+    
 
     this.gameOverAudio = new Audio();
     this.gameOverAudio.src =
