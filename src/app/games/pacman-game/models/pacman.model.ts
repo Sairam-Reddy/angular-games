@@ -118,6 +118,10 @@ export class Pacman {
     } else {
       if (this.user.score > this.user.highScore) {
         this.user.updateHighScore(this.user.getScore());
+        localStorage.setItem(
+          'pacman_game_high_score',
+          this.user.highScore.totring()
+        );
       }
     }
   }
@@ -172,7 +176,7 @@ export class Pacman {
     this.ctx.fillText('Score: ' + this.user.getScore(), 15, textBase + 13);
     this.ctx.fillText(
       'H Score: ' + this.user.getHighScore(),
-      10,
+      120,
       textBase + 13
     );
     this.ctx.fillText('Level: ' + this.level, 240, textBase + 13);
