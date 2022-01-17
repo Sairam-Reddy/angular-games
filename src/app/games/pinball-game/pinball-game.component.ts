@@ -145,7 +145,15 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
 
     // starting values
     this.currentScore = 0;
-    this.highScore = 0;
+    const highestScore: number = JSON.parse(
+      localStorage.getItem('pinball_game_high_score')
+    );
+    if (highestScore) {
+      this.highScore = highestScore;
+    } else {
+      this.highScore = 0;
+    }
+
     this.isLeftPaddleUp = false;
     this.isRightPaddleUp = false;
   }
@@ -456,6 +464,7 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
     this.currentScore = newCurrentScore;
 
     this.highScore = Math.max(this.currentScore, this.highScore);
+    localStorage.setItem('pinball_game_high_score', this.highScore.toString());
   }
 
   // matter.js has a built in random range function, but it is deterministic
