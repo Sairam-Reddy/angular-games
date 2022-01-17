@@ -65,6 +65,13 @@ export class AsteroidGameComponent implements AfterViewInit {
     this.canvasElement = this.graphCanvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
 
+    const highestScore: number = JSON.parse(
+      localStorage.getItem('asteroid_game_high_score')
+    );
+    if (highestScore) {
+      this.highestScore = highestScore;
+    }
+
     this.gameOverAudio = new Audio();
     this.gameOverAudio.src =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/asteroied-game-over.mp3';
@@ -337,6 +344,10 @@ export class AsteroidGameComponent implements AfterViewInit {
     this.gameOverAudio.play();
     if (this.score > this.highestScore) {
       this.highestScore = this.score;
+      localStorage.setItem(
+        'asteroid_game_high_score',
+        this.highestScore.toString()
+      );
     }
   }
 
