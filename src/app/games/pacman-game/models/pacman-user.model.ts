@@ -16,6 +16,7 @@ export class PacmanUser {
   public due = null;
   public lives = null;
   public score = 5;
+  public highScore = 0;
   public keyMap = {};
 
   public onCompletedLevel: () => void;
@@ -39,8 +40,16 @@ export class PacmanUser {
     }
   }
 
-  public theScore() {
+  public getScore() {
     return this.score;
+  }
+
+  public getHighScore() {
+    return this.highScore;
+  }
+
+  public updateHighScore(nScore) {
+    this.highScore = nScore;
   }
 
   public loseLife() {

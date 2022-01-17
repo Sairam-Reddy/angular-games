@@ -115,6 +115,8 @@ export class Pacman {
     this.user.loseLife();
     if (this.user.getLives() > 0) {
       this.startLevel();
+    } else {
+      this.user.updateHighScore(this.user.getHighScore());
     }
   }
 
@@ -143,12 +145,12 @@ export class Pacman {
       this.ctx.fillStyle = '#FFFF00';
       this.ctx.beginPath();
       this.ctx.moveTo(
-        150 + 25 * i + this.map.blockSize / 2,
+        200 + 25 * i + this.map.blockSize / 2,
         topLeft + 1 + this.map.blockSize / 2
       );
 
       this.ctx.arc(
-        150 + 25 * i + this.map.blockSize / 2,
+        200 + 25 * i + this.map.blockSize / 2,
         topLeft + 1 + this.map.blockSize / 2,
         this.map.blockSize / 2,
         Math.PI * 0.25,
@@ -165,8 +167,13 @@ export class Pacman {
 
     this.ctx.fillStyle = '#FFFF00';
     this.ctx.font = '14px Calibri';
-    this.ctx.fillText('Score: ' + this.user.theScore(), 30, textBase);
-    this.ctx.fillText('Level: ' + this.level, 260, textBase);
+    this.ctx.fillText('Score: ' + this.user.getScore(), 30, textBase);
+    this.ctx.fillText(
+      'High Score: ' + this.user.getHighScore((),
+      100,
+      textBase
+    );
+    this.ctx.fillText('Level: ' + this.level, 300, textBase);
   }
 
   public redrawBlock(pos) {
