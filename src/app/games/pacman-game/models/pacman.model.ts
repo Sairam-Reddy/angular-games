@@ -116,7 +116,9 @@ export class Pacman {
     if (this.user.getLives() > 0) {
       this.startLevel();
     } else {
-      this.user.updateHighScore(this.user.getScore());
+      if (this.user.score > this.user.highScore) {
+        this.user.updateHighScore(this.user.getScore());
+      }
     }
   }
 
@@ -163,13 +165,13 @@ export class Pacman {
     this.ctx.fillStyle = !this.soundDisabled() ? '#00FF00' : '#FF0000';
     this.ctx.font = 'bold 16px sans-serif';
     //ctx.fillText("♪", 10, textBase);
-    this.ctx.fillText('s', 10, textBase);
+    // this.ctx.fillText('s', 10, textBase);
 
     this.ctx.fillStyle = '#FFFF00';
     this.ctx.font = '14px Calibri';
-    this.ctx.fillText('Score: ' + this.user.getScore(), 30, textBase);
-    this.ctx.fillText('High Score: ' + this.user.getHighScore(), 100, textBase);
-    this.ctx.fillText('Level: ' + this.level, 300, textBase);
+    this.ctx.fillText('Score: ' + this.user.getScore(), 15, textBase);
+    this.ctx.fillText('High Score: ' + this.user.getHighScore(), 10, textBase);
+    this.ctx.fillText('Level: ' + this.level, 280, textBase);
   }
 
   public redrawBlock(pos) {
