@@ -316,13 +316,6 @@ export class Pacman {
   public init(wrapper, root) {
     let ghost;
 
-    const highestScore: number = JSON.parse(
-      localStorage.getItem('pacman_game_high_score')
-    );
-    if (highestScore) {
-      this.user.updateHighScore(highestScore);
-    }
-
     let blockSize = wrapper.offsetWidth / 19;
     this.canvas = document.createElement('canvas');
 
@@ -336,6 +329,13 @@ export class Pacman {
     this.audio = new PacmanAudio({ soundDisabled: this.soundDisabled });
     this.map = new PacmanMap(blockSize);
     this.user = new PacmanUser(this.map);
+
+    const highestScore: number = JSON.parse(
+      localStorage.getItem('pacman_game_high_score')
+    );
+    if (highestScore) {
+      this.user.updateHighScore(highestScore);
+    }
 
     this.user.onCompletedLevel = () => {
       this.completedLevel();
