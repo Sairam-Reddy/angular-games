@@ -99,6 +99,13 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
   ) {}
 
   public ngAfterViewInit(): void {
+    const highestScore: number = JSON.parse(
+      localStorage.getItem('arrow_defence_game_high_score')
+    );
+    if (highestScore) {
+      this.highestScore = highestScore;
+    }
+
     this.canvasElement = this.graphCanvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
     this.canvasElement.width = this.stage.w;
@@ -122,7 +129,7 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
     this.enemies = [];
     this.explosions = [];
     this.gameOver = false;
-    this.score = 0;
+    this.score = 0;    
     this.initialiseView();
   }
 
@@ -501,6 +508,10 @@ export class ArrowDefenceGameComponent implements AfterViewInit, OnDestroy {
       this.gameOverAudio.play();
       if (this.score > this.highestScore) {
         this.highestScore = this.score;
+        localStorage.setItem(
+          'arrow_defence_game_high_score',
+          this.highestScore.toString()
+        );
       }
     }
   }
