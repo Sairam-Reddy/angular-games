@@ -40,6 +40,13 @@ const routes: Routes = [
         (m) => m.TicTacToeGameModule
       ),
   },
+  {
+    path: 'highway-race-game',
+    loadChildren: () =>
+      import('./games/highway-race-game/highway-race-game.module').then(
+        (m) => m.HighwayRaceGameModule
+      ),
+  },
 ];
 
 @NgModule({
