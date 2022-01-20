@@ -73,7 +73,7 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
     document.removeEventListener(this.downEvent, this.getTouchHold);
     document.removeEventListener(this.moveEvent, this.steerVehicle);
     document.removeEventListener(this.upEvent, this.straightenVehicle);
-    
+    this.resizeObserver.unobserve(this.element.nativeElement);
   }
 
   public onClickDifBtn(difficulty): void {
