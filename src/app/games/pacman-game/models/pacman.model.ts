@@ -320,7 +320,7 @@ export class Pacman {
     this.canvas = document.createElement('canvas');
 
     this.canvas.setAttribute('width', blockSize * 19 + 'px');
-    this.canvas.setAttribute('height', blockSize * 22 + 30 + 'px');
+    this.canvas.setAttribute('height', wrapper.offsetHeight + 0 + 'px');
 
     wrapper.appendChild(this.canvas);
 
