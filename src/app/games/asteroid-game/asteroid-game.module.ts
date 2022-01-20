@@ -13,5 +13,8 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
   declarations: [AsteroidGameComponent],
+  exports: [
+    AsteroidGameComponent
+  ]
 })
 export class AsteroidGameModule {}

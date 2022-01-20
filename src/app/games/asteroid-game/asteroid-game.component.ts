@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   VERSION,
   ViewChild,
@@ -27,7 +28,7 @@ import {
   templateUrl: './asteroid-game.component.html',
   styleUrls: ['./asteroid-game.component.scss'],
 })
-export class AsteroidGameComponent implements OnInit, AfterViewInit {
+export class AsteroidGameComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('graphCanvas') graphCanvas: ElementRef;
 
   private ctx: CanvasRenderingContext2D;
@@ -41,7 +42,7 @@ export class AsteroidGameComponent implements OnInit, AfterViewInit {
   public highestScore = 0;
   public isPlay = false;
   public gamePlayed = false;
-  public ship; // Ship
+  public ship: Ship; // Ship
 
   private gameOverAudio: HTMLAudioElement;
 
@@ -59,6 +60,7 @@ export class AsteroidGameComponent implements OnInit, AfterViewInit {
   private ufoLastSpawn = 0;
   private debriLastSpawn = 0;
   private fieldRange;
+  private resizeObserver;
 
   public constructor(private element: ElementRef) {}
 
@@ -84,6 +86,11 @@ export class AsteroidGameComponent implements OnInit, AfterViewInit {
     this.fieldRange = new Range();
 
     window.addEventListener('resize', this.resize.bind(this), false);
+    // Resize
+    this.resizeObserver = new ResizeObserver(() => {
+      this.resize();
+    });
+    this.resizeObserver.observe(this.element.nativeElement);
     this.resize();
 
     this.mouse = new Point();
@@ -406,5 +413,13 @@ export class AsteroidGameComponent implements OnInit, AfterViewInit {
         (bx * (a2.y - b1.y) - by * (a2.x - b1.x)) <=
         0
     );
+  }
+
+  ngOnDestroy(): void {
+    this.gameOverAudio.pause();
+    this.gameOverAudio.src = null;
+    this.resizeObserver.unobserve(this.element.nativeElement);
+    this.ufo?.stopAllSounds();
+    this.asteroids?.map((asteroid) => asteroid?.stopAllSounds());
   }
 }
