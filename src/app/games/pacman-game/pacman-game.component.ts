@@ -1,10 +1,10 @@
-import { typeSourceSpan } from '@angular/compiler/src/parse_util';
 import {
   AfterViewInit,
   Component,
   ElementRef,
   OnDestroy,
   ViewChild,
+  Input,
 } from '@angular/core';
 import { Pacman } from './models/pacman.model';
 
@@ -14,6 +14,7 @@ import { Pacman } from './models/pacman.model';
   styleUrls: ['./pacman-game.component.scss'],
 })
 export class PacmanGameComponent implements AfterViewInit, OnDestroy {
+  @Input() previewOnly: boolean;
   @ViewChild('pacmanElement') pacmanElement: ElementRef;
   /*
    * fix looped audio
@@ -22,7 +23,7 @@ export class PacmanGameComponent implements AfterViewInit, OnDestroy {
    * do proper ghost mechanics (blinky/wimpy etc)
    */
 
-  public pacman;
+  public pacman: Pacman;
 
   public constructor() {}
 
@@ -30,7 +31,7 @@ export class PacmanGameComponent implements AfterViewInit, OnDestroy {
     this.pacman = new Pacman();
     const url =
       'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/';
-    this.pacman.init(this.pacmanElement.nativeElement, url);
+    this.pacman.init(this.pacmanElement.nativeElement, url, this.previewOnly);
   }
 
   ngOnDestroy(): void {

@@ -313,7 +313,7 @@ export class Pacman {
     }
   }
 
-  public init(wrapper, root) {
+  public init(wrapper, root, previewOnly) {
     let ghost;
 
     let blockSize = wrapper.offsetWidth / 19;
@@ -354,6 +354,10 @@ export class Pacman {
     }
 
     this.map.draw(this.ctx);
+
+    if (previewOnly) {
+      return;
+    }
     //this.dialog('Loading ...');
 
     var extension = 'mp3';
@@ -457,7 +461,7 @@ export class Pacman {
     this.yDown = null;
   }
 
-  public destory(): void {
+  public destroy(): void {
     if (this.timer) {
       window.clearInterval(this.timer);
     }

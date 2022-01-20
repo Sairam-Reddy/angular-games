@@ -12,10 +12,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
-    declarations: [HighwayRaceGameComponent],
-    exports: [
-        HighwayRaceGameComponent
-    ]
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
+  declarations: [HighwayRaceGameComponent],
+  exports: [HighwayRaceGameComponent],
 })
 export class HighwayRaceGameModule {}
