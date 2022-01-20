@@ -3,21 +3,56 @@
 
 <ul>
   <li>
-    <a [routerLink]="['/arrow-defence-game']">Arrow Defence Game</a>
+    <a (click)="arrow = true">Arrow Defence Game</a>
   </li>
   <li>
-    <a [routerLink]="['/asteroid-game']">Asteroid Game</a>
+    <a (click)="asteroid = true">Asteroid Game</a>
   </li>
   <li>
-    <a [routerLink]="['/pinball-game']">Pinball Game</a>
+    <a (click)="pinball = true">Pinball Game</a>
   </li>
   <li>
-    <a [routerLink]="['/pacman-game']">Pacman Game</a>
+    <a (click)="pacman = true">Pacman Game</a>
   </li>
   <li>
-    <a [routerLink]="['/tic-tac-toe-game']">Tic-Tac-Toe Game</a>
+    <a (click)="ticTac = true">Tic-Tac-Toe Game</a>
   </li>
   <li>
-    <a [routerLink]="['/highway-race-game']">Highway Race Game</a>
+    <a (click)="highway = true">Highway Race Game</a>
   </li>
 </ul>
+<div
+  *ngIf="ticTac || arrow || pinball || asteroid || pacman || highway"
+  class="game-container"
+  [ngClass]="{ 'full-screen': fullScreen }"
+>
+  <app-tic-tac-toe-game *ngIf="ticTac"></app-tic-tac-toe-game>
+  <app-arrow-defence-game *ngIf="arrow"></app-arrow-defence-game>
+  <app-asteroid-game *ngIf="asteroid"></app-asteroid-game>
+  <app-pinball-game *ngIf="pinball"></app-pinball-game>
+  <app-highway-race-game *ngIf="highway"></app-highway-race-game>
+  <app-pacman-game *ngIf="pacman"></app-pacman-game>
+  <button
+    class="btn btn-fullscreen"
+    (click)="fullScreen = !fullScreen"
+    [ngClass]="{ fullscreen: fullScreen }"
+  >
+    <img *ngIf="!fullScreen" src="assets/images/nav-fullscreen.svg" alt="" />
+    <img *ngIf="fullScreen" src="assets/images/Close_Icon_white.svg" alt="" />
+  </button>
+  <button
+    class="btn btn-close-activity"
+    *ngIf="!fullScreen"
+    (click)="
+      arrow = false;
+      pinball = false;
+      pacman = false;
+      asteroid = false;
+      highway = false;
+      ticTac = false;
+      fullScreen = false
+    "
+  >
+    <img src="assets/images/Close_Icon_white.svg" alt="" />
+  </button>
+</div>
