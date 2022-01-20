@@ -11,10 +11,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes)],
-    declarations: [TicTacToeGameComponent],
-    exports: [
-        TicTacToeGameComponent
-    ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [TicTacToeGameComponent],
+  exports: [TicTacToeGameComponent],
 })
 export class TicTacToeGameModule {}
