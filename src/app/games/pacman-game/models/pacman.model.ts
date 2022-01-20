@@ -62,7 +62,7 @@ export class Pacman {
     this.ctx.font = '18px Calibri';
     var width = this.ctx.measureText(text).width,
       x = (this.map.width * this.map.blockSize - width) / 2;
-    this.ctx.fillText(text, x, this.map.height * 8 + );
+    this.ctx.fillText(text, x, this.map.height * 8 + 8);
   }
 
   public soundDisabled() {
@@ -319,7 +319,7 @@ export class Pacman {
     let blockSize = wrapper.offsetWidth / 60;
     this.canvas = document.createElement('canvas');
 
-    this.canvas.setAttribute('width', blockSize * 21 + 'px');
+    this.canvas.setAttribute('width', blockSize * 20 + 'px');
     this.canvas.setAttribute('height', blockSize * 24 + 'px');
 
     wrapper.appendChild(this.canvas);
