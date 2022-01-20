@@ -3,13 +3,14 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Input,
   OnDestroy,
   ViewChild,
 } from '@angular/core';
 import * as Matter from 'matter-js';
 import { Vertices } from 'matter-js';
-import decomp = require('poly-decomp');
-import MatterAttractors = require('matter-attractors');
+import * as decomp from 'poly-decomp';
+import * as MatterAttractors from 'matter-attractors';
 import { PinballPaddleCollision } from './models/pinball-paddle-collision.model';
 
 @Component({
@@ -18,6 +19,7 @@ import { PinballPaddleCollision } from './models/pinball-paddle-collision.model'
   styleUrls: ['./pinball-game.component.scss'],
 })
 export class PinballGameComponent implements AfterViewInit, OnDestroy {
+  @Input() previewOnly = false;
   @ViewChild('elem') elem: ElementRef;
 
   // constants
@@ -62,9 +64,15 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
   private rightUpStopper;
   private rightDownStopper;
   private isRightPaddleUp;
+  scale = 'scale(0.5)';
+  resizeObserver;
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
+    if (this.previewOnly) {
+      return;
+    }
+
     if (event.code === 'ArrowLeft') {
       this.setLeftPaddleUp(event);
     } else if (event.code === 'ArrowRight') {
@@ -74,12 +82,18 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('window:keyup', ['$event'])
   handleKeyUp(event: KeyboardEvent) {
+    if (this.previewOnly) {
+      return;
+    }
+
     if (event.code === 'ArrowLeft') {
       this.setLeftPaddleDown(event);
     } else if (event.code === 'ArrowRight') {
       this.setRightPaddleDown(event);
     }
   }
+
+  constructor(private element: ElementRef) {}
 
   public ngAfterViewInit(): void {
     Matter.Common.setDecomp(decomp);
@@ -94,6 +108,22 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
     this.pinballPlaySound.play();
 
     this.load();
+    this.resizeObserver = new ResizeObserver(() => {
+      this.resize();
+    });
+    this.resizeObserver.observe(this.element.nativeElement);
+  }
+
+  resize() {
+    if (this.element.nativeElement.offsetHeight < 400) {
+      this.scale = 'scale(0.25)';
+    } else if (this.element.nativeElement.offsetHeight < 600) {
+      this.scale = 'scale(0.5)';
+    } else if (this.element.nativeElement.offsetHeight < 800) {
+      this.scale = 'scale(0.75)';
+    } else if (this.element.nativeElement.offsetHeight > 800) {
+      this.scale = 'scale(1)';
+    }
   }
 
   public ngOnDestroy(): void {
@@ -101,6 +131,7 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
     if (this.pinballPaddleCollision) {
       this.pinballPaddleCollision.sound.pause();
     }
+    this.resizeObserver.unobserve(this.element.nativeElement);
   }
 
   private load() {
