@@ -131,9 +131,21 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
     this.pinballPlaySound = null;
     if (this.pinballPaddleCollision) {
       this.pinballPaddleCollision.sound.pause();
-      this.pinballPaddleCollision.sound = null;
+      this.pinballPaddleCollision.sound.src = null;
     }
     this.resizeObserver.unobserve(this.element.nativeElement);
+
+    if (this.world) {
+      Matter.World.clear(this.world, false);
+    }
+
+    if (this.engine) {
+      Matter.Engine.clear(this.engine);
+    }
+
+    if (this.render) {
+      Matter.Render.stop(this.render);
+    }
   }
 
   private load() {
