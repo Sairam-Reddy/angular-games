@@ -13,8 +13,6 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
   declarations: [PinballGameComponent],
-  exports: [
-    PinballGameComponent
-  ]
+  exports: [PinballGameComponent],
 })
 export class PinballGameModule {}
