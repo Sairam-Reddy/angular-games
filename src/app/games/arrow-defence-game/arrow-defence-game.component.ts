@@ -93,6 +93,7 @@ export class ArrowDefenceGameComponent
   private explodeImage: HTMLImageElement;
   private explodebImage: HTMLImageElement;
   private backroundImage: HTMLImageElement;
+  private resizeObserver;
 
   private gameOverAudio: HTMLAudioElement;
 
@@ -113,10 +114,20 @@ export class ArrowDefenceGameComponent
   public ngAfterViewInit(): void {
     this.canvasElement = this.graphCanvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
+    this.stage = {
+      w: this.element.nativeElement.offsetWidth,
+      h: this.element.nativeElement.offsetHeight,
+    };
     this.canvasElement.width = this.stage.w;
     this.canvasElement.height = this.stage.h;
     this.initialiseAudio();
     this.initialiseView();
+
+    // Resize
+    this.resizeObserver = new ResizeObserver(() => {
+      this.onResize();
+    });
+    this.resizeObserver.observe(this.element.nativeElement);
   }
 
   public ngOnDestroy(): void {
@@ -126,6 +137,10 @@ export class ArrowDefenceGameComponent
     window.removeEventListener('touchstart', this.motchstart);
     window.removeEventListener('touchmove', this.motchstart);
     window.removeEventListener('touchend', this.motchstart);
+    this.gameOverAudio.pause();
+    this.gameOverAudio.src = null;
+    this.resizeObserver.unobserve(this.element.nativeElement);
+    this.gameOver = true;
   }
 
   public restart(): void {
@@ -139,6 +154,12 @@ export class ArrowDefenceGameComponent
   }
 
   public onResize(): void {
+    this.stage = {
+      w: this.element.nativeElement.offsetWidth,
+      h: this.element.nativeElement.offsetHeight,
+    };
+    this.canvasElement.width = this.stage.w;
+    this.canvasElement.height = this.stage.h;
     const cw = this.element.nativeElement.offsetWidth;
     const ch = this.element.nativeElement.offsetHeight;
 

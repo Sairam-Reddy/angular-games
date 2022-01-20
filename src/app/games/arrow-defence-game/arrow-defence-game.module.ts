@@ -14,5 +14,8 @@ const routes: Routes = [
 @NgModule({
   imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
   declarations: [ArrowDefenceGameComponent],
+  exports: [
+    ArrowDefenceGameComponent
+  ]
 })
 export class ArrowDefenceGameModule {}
