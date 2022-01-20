@@ -36,6 +36,7 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
   private downEvent;
   private moveEvent;
   private upEvent;
+  private resizeObserver;
 
   public constructor(private element: ElementRef) {}
 
@@ -45,7 +46,11 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
     this.init();
     this.update();
 
-    window.addEventListener('resize', this.adjustWindow.bind(this));
+    // Resize
+    this.resizeObserver = new ResizeObserver(() => {
+      this.adjustWindow();
+    });
+    this.resizeObserver.observe(this.element.nativeElement);
 
     // steering
     this.downEvent =
@@ -68,6 +73,7 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
     document.removeEventListener(this.downEvent, this.getTouchHold);
     document.removeEventListener(this.moveEvent, this.steerVehicle);
     document.removeEventListener(this.upEvent, this.straightenVehicle);
+    
   }
 
   public onClickDifBtn(difficulty): void {
