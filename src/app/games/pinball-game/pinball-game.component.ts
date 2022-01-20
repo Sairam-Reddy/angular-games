@@ -128,8 +128,10 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.pinballPlaySound.pause();
+    this.pinballPlaySound = null;
     if (this.pinballPaddleCollision) {
       this.pinballPaddleCollision.sound.pause();
+      this.pinballPaddleCollision.sound = null;
     }
     this.resizeObserver.unobserve(this.element.nativeElement);
   }
