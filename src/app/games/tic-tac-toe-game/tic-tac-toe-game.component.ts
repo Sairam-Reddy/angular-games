@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './tic-tac-toe-game.component.html',
   styleUrls: ['./tic-tac-toe-game.component.scss'],
 })
-export class TicTacToeGameComponent {}
+export class TicTacToeGameComponent {
+
+
+  public computerMove(): void {
+    
+  }
+}
