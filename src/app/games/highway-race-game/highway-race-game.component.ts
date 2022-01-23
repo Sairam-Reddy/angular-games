@@ -98,7 +98,7 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
 
     if (this.gameOverAudio) {
       this.gameOverAudio.pause();
-      this.winTicTacToeAudio = null;
+      this.gameOverAudio = null;
     }
   }
 
