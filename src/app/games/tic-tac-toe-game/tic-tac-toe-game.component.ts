@@ -6,6 +6,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./tic-tac-toe-game.component.scss'],
 })
 export class TicTacToeGameComponent implements OnInit, OnDestroy {
+  private playerCells: Array<string> = [];
   private moveTicTacToeAudio: HTMLAudioElement;
   private winTicTacToeAudio: HTMLAudioElement;
 
@@ -33,11 +34,44 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy {
     }
   }
 
-  public playerMove(): void {
+  public playerMove(cell: string): void {
+    this.playerCells.push(cell);
     this.moveTicTacToeAudio.play();
+    if (this.checkPlayerHasWon()) {
+      this.winTicTacToeAudio.play();
+    }
   }
 
   public computerMove(): void {
     this.moveTicTacToeAudio.play();
+  }
+
+  private checkPlayerHasWon(): boolean {
+    return (
+      (this.playerCells.includes('cell-0-x') &&
+        this.playerCells.includes('cell-1-x') &&
+        this.playerCells.includes('cell-2-x')) ||
+      (this.playerCells.includes('cell-3-x') &&
+        this.playerCells.includes('cell-4-x') &&
+        this.playerCells.includes('cell-5-x')) ||
+      (this.playerCells.includes('cell-6-x') &&
+        this.playerCells.includes('cell-7-x') &&
+        this.playerCells.includes('cell-8-x')) ||
+      (this.playerCells.includes('cell-0-x') &&
+        this.playerCells.includes('cell-3-x') &&
+        this.playerCells.includes('cell-6-x')) ||
+      (this.playerCells.includes('cell-1-x') &&
+        this.playerCells.includes('cell-4-x') &&
+        this.playerCells.includes('cell-7-x')) ||
+      (this.playerCells.includes('cell-2-x') &&
+        this.playerCells.includes('cell-5-x') &&
+        this.playerCells.includes('cell-8-x')) ||
+      (this.playerCells.includes('cell-0-x') &&
+        this.playerCells.includes('cell-4-x') &&
+        this.playerCells.includes('cell-8-x')) ||
+      (this.playerCells.includes('cell-2-x') &&
+        this.playerCells.includes('cell-4-x') &&
+        this.playerCells.includes('cell-6-x'))
+    );
   }
 }
