@@ -46,32 +46,36 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy {
     this.moveTicTacToeAudio.play();
   }
 
+  public reset(): void {
+    this.playerCells = [];
+  }
+
   private checkPlayerHasWon(): boolean {
     return (
-      (this.playerCells.includes('cell-0-x') &&
-        this.playerCells.includes('cell-1-x') &&
-        this.playerCells.includes('cell-2-x')) ||
-      (this.playerCells.includes('cell-3-x') &&
-        this.playerCells.includes('cell-4-x') &&
-        this.playerCells.includes('cell-5-x')) ||
-      (this.playerCells.includes('cell-6-x') &&
-        this.playerCells.includes('cell-7-x') &&
-        this.playerCells.includes('cell-8-x')) ||
-      (this.playerCells.includes('cell-0-x') &&
-        this.playerCells.includes('cell-3-x') &&
-        this.playerCells.includes('cell-6-x')) ||
-      (this.playerCells.includes('cell-1-x') &&
-        this.playerCells.includes('cell-4-x') &&
-        this.playerCells.includes('cell-7-x')) ||
-      (this.playerCells.includes('cell-2-x') &&
-        this.playerCells.includes('cell-5-x') &&
-        this.playerCells.includes('cell-8-x')) ||
-      (this.playerCells.includes('cell-0-x') &&
-        this.playerCells.includes('cell-4-x') &&
-        this.playerCells.includes('cell-8-x')) ||
-      (this.playerCells.includes('cell-2-x') &&
-        this.playerCells.includes('cell-4-x') &&
-        this.playerCells.includes('cell-6-x'))
+      (this.playerCells.some((x: string) => x === 'cell-0-x') &&
+        this.playerCells.some((x: string) => x === 'cell-1-x') &&
+        this.playerCells.some((x: string) => x === 'cell-2-x')) ||
+      (this.playerCells.some((x: string) => x === 'cell-3-x') &&
+        this.playerCells.some((x: string) => x === 'cell-4-x') &&
+        this.playerCells.some((x: string) => x === 'cell-5-x')) ||
+      (this.playerCells.some((x: string) => x === 'cell-6-x') &&
+        this.playerCells.some((x: string) => x === 'cell-7-x') &&
+        this.playerCells.some((x: string) => x === 'cell-8-x')) ||
+      (this.playerCells.some((x: string) => x === 'cell-0-x') &&
+        this.playerCells.some((x: string) => x === 'cell-3-x') &&
+        this.playerCells.some((x: string) => x === 'cell-6-x')) ||
+      (this.playerCells.some((x: string) => x === 'cell-1-x') &&
+        this.playerCells.some((x: string) => x === 'cell-4-x') &&
+        this.playerCells.some((x: string) => x === 'cell-7-x')) ||
+      (this.playerCells.some((x: string) => x === 'cell-2-x') &&
+        this.playerCells.some((x: string) => x === 'cell-5-x') &&
+        this.playerCells.some((x: string) => x === 'cell-8-x')) ||
+      (this.playerCells.some((x: string) => x === 'cell-0-x') &&
+        this.playerCells.some((x: string) => x === 'cell-4-x') &&
+        this.playerCells.some((x: string) => x === 'cell-8-x')) ||
+      (this.playerCells.some((x: string) => x === 'cell-2-x') &&
+        this.playerCells.some((x: string) => x === 'cell-4-x') &&
+        this.playerCells.some((x: string) => x === 'cell-6-x'))
     );
   }
 }

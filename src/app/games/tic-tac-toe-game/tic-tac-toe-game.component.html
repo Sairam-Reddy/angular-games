@@ -2,7 +2,7 @@
 <input type="checkbox" id="sound" />
 <input type="checkbox" id="first" />
 
-<input type="checkbox" id="start" />
+<input (click)= type="checkbox" id="start" />
 
 <form id="tictactoe">
   <input
@@ -151,7 +151,12 @@
   <div id="end" class="scrim">
     <div id="message" class="center">
       <div>
-        <input type="reset" for="tictactoe" value="Play again" />
+        <input
+          (click)="reset()"
+          type="reset"
+          for="tictactoe"
+          value="Play again"
+        />
       </div>
     </div>
   </div>
