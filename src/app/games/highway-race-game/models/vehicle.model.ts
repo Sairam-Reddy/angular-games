@@ -35,11 +35,11 @@ export class Vehicle {
     this.model = null;
     this.name = args.name || '';
 
-    this.maxSpeed = 4;
+    this.maxSpeed = 3;
     this.isSteering = false;
     this.steerAngle = 0;
     this.maxSteerAngle = 30;
-    this.steerSpeed = 0.15;
+    this.steerSpeed = 0.24;
     this.steerDir = '';
     this.xLimit = 20;
     this.crashed = false;
