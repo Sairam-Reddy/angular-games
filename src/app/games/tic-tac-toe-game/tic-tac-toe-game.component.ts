@@ -6,9 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./tic-tac-toe-game.component.scss'],
 })
 export class TicTacToeGameComponent {
+  private moveTicTacToeAudio: HTMLAudioElement;
+  private winTicTacToeAudio: HTMLAudioElement;
 
-
-  public computerMove(): void {
-    
-  }
+  public computerMove(): void {}
 }
