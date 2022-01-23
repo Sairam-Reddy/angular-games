@@ -54,6 +54,7 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy {
 
   public reset(): void {
     this.playerCells = [];
+    this.computerCells = []
   }
 
   private checkPlayerHasWon(): boolean {
