@@ -6,7 +6,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./tic-tac-toe-game.component.scss'],
 })
 export class TicTacToeGameComponent implements OnInit, OnDestroy {
+  
   private playerCells: Array<string> = [];
+  private computerCells: Array<string> = [];
   private moveTicTacToeAudio: HTMLAudioElement;
   private winTicTacToeAudio: HTMLAudioElement;
 
@@ -37,13 +39,17 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy {
   public playerMove(cell: string): void {
     this.playerCells.push(cell);
     this.moveTicTacToeAudio.play();
-    if (this.checkPlayerHasWon()) {
+    if (this.checkPlayerHasWon() || this.checkComputerHasWon()) {
       this.winTicTacToeAudio.play();
     }
   }
 
-  public computerMove(): void {
+  public computerMove(cell: string): void {
+    this.computerCells.push(cell);
     this.moveTicTacToeAudio.play();
+    if (this.checkPlayerHasWon() || this.checkComputerHasWon()) {
+      this.winTicTacToeAudio.play();
+    }
   }
 
   public reset(): void {
@@ -76,6 +82,35 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy {
       (this.playerCells.some((x: string) => x === 'cell-2-x') &&
         this.playerCells.some((x: string) => x === 'cell-4-x') &&
         this.playerCells.some((x: string) => x === 'cell-6-x'))
+    );
+  }
+
+  private checkComputerHasWon(): boolean {
+    return (
+      (this.computerCells.some((x: string) => x === 'cell-0-o') &&
+        this.computerCells.some((x: string) => x === 'cell-1-o') &&
+        this.computerCells.some((x: string) => x === 'cell-2-o')) ||
+      (this.computerCells.some((x: string) => x === 'cell-3-o') &&
+        this.computerCells.some((x: string) => x === 'cell-4-o') &&
+        this.computerCells.some((x: string) => x === 'cell-5-o')) ||
+      (this.computerCells.some((x: string) => x === 'cell-6-o') &&
+        this.computerCells.some((x: string) => x === 'cell-7-o') &&
+        this.computerCells.some((x: string) => x === 'cell-8-o')) ||
+      (this.computerCells.some((x: string) => x === 'cell-0-o') &&
+        this.computerCells.some((x: string) => x === 'cell-3-o') &&
+        this.computerCells.some((x: string) => x === 'cell-6-o')) ||
+      (this.computerCells.some((x: string) => x === 'cell-1-o') &&
+        this.computerCells.some((x: string) => x === 'cell-4-o') &&
+        this.computerCells.some((x: string) => x === 'cell-7-o')) ||
+      (this.computerCells.some((x: string) => x === 'cell-2-o') &&
+        this.computerCells.some((x: string) => x === 'cell-5-o') &&
+        this.computerCells.some((x: string) => x === 'cell-8-o')) ||
+      (this.computerCells.some((x: string) => x === 'cell-0-o') &&
+        this.computerCells.some((x: string) => x === 'cell-4-o') &&
+        this.computerCells.some((x: string) => x === 'cell-8-o')) ||
+      (this.computerCells.some((x: string) => x === 'cell-2-o') &&
+        this.computerCells.some((x: string) => x === 'cell-4-o') &&
+        this.computerCells.some((x: string) => x === 'cell-6-o'))
     );
   }
 }

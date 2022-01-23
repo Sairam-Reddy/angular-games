@@ -2,7 +2,7 @@
 <input type="checkbox" id="sound" />
 <input type="checkbox" id="first" />
 
-<input (click)="reset" type="checkbox" id="start" />
+<input (click)="(reset)" type="checkbox" id="start" />
 
 <form id="tictactoe">
   <input
@@ -11,63 +11,108 @@
     name="cell-0"
     id="cell-0-x"
   />
-  <input type="radio" name="cell-0" id="cell-0-o" />
+  <input
+    (click)="computerMove('cell-0-o')"
+    type="radio"
+    name="cell-0"
+    id="cell-0-o"
+  />
   <input
     (click)="playerMove('cell-1-x')"
     type="radio"
     name="cell-1"
     id="cell-1-x"
   />
-  <input type="radio" name="cell-1" id="cell-1-o" />
+  <input
+    (click)="computerMove('cell-1-o')"
+    type="radio"
+    name="cell-1"
+    id="cell-1-o"
+  />
   <input
     (click)="playerMove('cell-2-x')"
     type="radio"
     name="cell-2"
     id="cell-2-x"
   />
-  <input type="radio" name="cell-2" id="cell-2-o" />
+  <input
+    (click)="computerMove('cell-2-o')"
+    type="radio"
+    name="cell-2"
+    id="cell-2-o"
+  />
   <input
     (click)="playerMove('cell-3-x')"
     type="radio"
     name="cell-3"
     id="cell-3-x"
   />
-  <input type="radio" name="cell-3" id="cell-3-o" />
+  <input
+    (click)="computerMove('cell-3-o')"
+    type="radio"
+    name="cell-3"
+    id="cell-3-o"
+  />
   <input
     (click)="playerMove('cell-4-x')"
     type="radio"
     name="cell-4"
     id="cell-4-x"
   />
-  <input type="radio" name="cell-4" id="cell-4-o" />
+  <input
+    (click)="computerMove('cell-4-o')"
+    type="radio"
+    name="cell-4"
+    id="cell-4-o"
+  />
   <input
     (click)="playerMove('cell-5-x')"
     type="radio"
     name="cell-5"
     id="cell-5-x"
   />
-  <input type="radio" name="cell-5" id="cell-5-o" />
+  <input
+    (click)="computerMove('cell-5-o')"
+    type="radio"
+    name="cell-5"
+    id="cell-5-o"
+  />
   <input
     (click)="playerMove('cell-6-x')"
     type="radio"
     name="cell-6"
     id="cell-6-x"
   />
-  <input type="radio" name="cell-6" id="cell-6-o" />
+  <input
+    (click)="computerMove('cell-6-o')"
+    type="radio"
+    name="cell-6"
+    id="cell-6-o"
+  />
   <input
     (click)="playerMove('cell-7-x')"
     type="radio"
     name="cell-7"
     id="cell-7-x"
   />
-  <input type="radio" name="cell-7" id="cell-7-o" />
+  <input
+    (click)="computerMove('cell-7-o')"
+    type="radio"
+    name="cell-7"
+    id="cell-7-o"
+  />
   <input
     (click)="playerMove('cell-8-x')"
     type="radio"
     name="cell-8"
     id="cell-8-x"
   />
-  <input type="radio" name="cell-8" id="cell-8-o" />
+  <input
+    (click)="computerMove('cell-8-o')"
+    type="radio"
+    name="cell-8"
+    id="cell-8-o"
+  />
 
   <div id="menu" class="scrim">
     <div class="center">
@@ -136,7 +181,7 @@
       <div></div>
     </div>
   </div>
-  <div (click)="computerMove()" id="label-computer" class="btn">
+  <div id="label-computer" class="btn">
     Computer Move!
     <label for="cell-0-o"></label>
     <label for="cell-1-o"></label>
