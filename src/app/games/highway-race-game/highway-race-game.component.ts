@@ -38,10 +38,26 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
   private upEvent;
   private resizeObserver;
 
+  private gameAudio: HTMLAudioElement;
+  private gameOverAudio: HTMLAudioElement;
+
   public constructor(private element: ElementRef) {}
 
   public ngAfterViewInit(): void {
     this.difSelect = document.querySelector('.difficulty-select');
+
+    this.gameAudio = new Audio();
+    this.gameAudio.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Racing-Car.mp3';
+    this.gameAudio.load();
+    this.gameAudio.playbackRate = 1;
+    this.gameAudio.loop = true;
+
+    this.gameOverAudio = new Audio();
+    this.gameOverAudio.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Car-Crash.mp3';
+    this.gameOverAudio.load();
+    this.gameOverAudio.playbackRate = 2;
 
     this.init();
     this.update();
@@ -74,6 +90,16 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
     document.removeEventListener(this.moveEvent, this.steerVehicle);
     document.removeEventListener(this.upEvent, this.straightenVehicle);
     this.resizeObserver.unobserve(this.element.nativeElement);
+
+    if (this.gameAudio) {
+      this.gameAudio.pause();
+      this.gameAudio = null;
+    }
+
+    if (this.gameOverAudio) {
+      this.winTicTacToeAudio.pause();
+      this.winTicTacToeAudio = null;
+    }
   }
 
   public onClickDifBtn(difficulty): void {
@@ -214,6 +240,8 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
             A_front - B_back < 1,
             this.scene
           );
+          this.gameAudio.pause();
+          this.gameOverAudio.play();
         }
       }
     }
@@ -285,6 +313,8 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
         },
         this.scene
       );
+      this.gameAudio.currentTime = 0;
+      this.gameAudio.play();
       // this.header.innerHTML = this.game.score;
       this.toggleScoreCounter();
       this.showTutorial();
