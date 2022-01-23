@@ -367,8 +367,9 @@ export class HighwayRaceGameComponent implements AfterViewInit, OnDestroy {
         }
 
         if (!this.game.tutorial) {
-          if (!e.crashed) e.accelerate();
-          else {
+          if (!e.crashed) {
+            e.accelerate();
+          } else {
             e.decelerate();
 
             // spinout if steering
