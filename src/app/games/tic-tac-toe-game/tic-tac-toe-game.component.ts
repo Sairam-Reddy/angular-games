@@ -21,7 +21,11 @@ export class TicTacToeGameComponent implements OnInit {
     this.winTicTacToeAudio.load();
   }
 
+  public playerMove(): void {
+    this.moveTicTacToeAudio.play();
+  }
+
   public computerMove(): void {
-    this.moveTicTacToeAudio.play
+    this.moveTicTacToeAudio.play();
   }
 }
