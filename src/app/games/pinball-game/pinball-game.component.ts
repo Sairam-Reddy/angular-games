@@ -11,7 +11,6 @@ import * as Matter from 'matter-js';
 import { Vertices } from 'matter-js';
 import * as decomp from 'poly-decomp';
 import * as MatterAttractors from 'matter-attractors';
-import { PinballPaddleCollision } from './models/pinball-paddle-collision.model';
 
 @Component({
   selector: 'app-pinball-game',
@@ -46,7 +45,7 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
   public MAX_VELOCITY = 50;
 
   private pinballPlaySound: HTMLAudioElement;
-  private pinballPaddleCollision: PinballPaddleCollision;
+  private pinballPaddleCollisionSound: HTMLAudioElement;
 
   // shared variables
   public currentScore = 0;
@@ -107,6 +106,12 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
     this.pinballPlaySound.loop = true;
     this.pinballPlaySound.play();
 
+    this.pinballPaddleCollisionSound = new Audio();
+    this.pinballPaddleCollisionSound.src =
+      'https://stackblitz.com/files/angular-ivy-kbykxm/github/Sairam-Reddy/angular-games/master/src/assets/audio/Pinball-Flipper.mp3';
+    this.pinballPaddleCollisionSound.load();
+    this.pinballPaddleCollisionSound.playbackRate = 2;
+
     this.load();
     this.resizeObserver = new ResizeObserver(() => {
       this.resize();
@@ -129,9 +134,9 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
   public ngOnDestroy(): void {
     this.pinballPlaySound.pause();
     this.pinballPlaySound = null;
-    if (this.pinballPaddleCollision) {
-      this.pinballPaddleCollision.sound.pause();
-      this.pinballPaddleCollision.sound.src = null;
+    if (this.pinballPaddleCollisionSound) {
+      this.pinballPaddleCollisionSound.pause();
+      this.pinballPaddleCollisionSound = null;
     }
     this.resizeObserver.unobserve(this.element.nativeElement);
 
@@ -454,14 +459,13 @@ export class PinballGameComponent implements AfterViewInit, OnDestroy {
             break;
           case 'paddleLeft':
             if (!pair.bodyA.isStatic && pair.bodyA.parent.speed >= 10) {
-              this.pinballPaddleCollision = new PinballPaddleCollision();
-              this.pinballPaddleCollision.sound.play();
+              this.pinballPaddleCollisionSound.play();
             }
             break;
           case 'paddleRight':
             if (!pair.bodyA.isStatic && pair.bodyA.parent.speed >= 10) {
-              this.pinballPaddleCollision = new PinballPaddleCollision();
-              this.pinballPaddleCollision.sound.play();
+             
+              this.pinballPaddleCollisionSound.play();
             }
             break;
         }
