@@ -16,7 +16,7 @@
     "matter-attractors": "^0.1.6",
     "matter-js": "^0.18.0",
     "poly-decomp": "^0.3.0",
-    
+    "gsap": "1.19.0",
     "rxjs": "^7.3.0",
     "three": "^0.136.0",
     "three-csg-ts": "^3.1.9",
