@@ -18,6 +18,12 @@ export class ShootingHoopsGameComponent implements AfterViewInit, OnDestroy {
   @ViewChild('ballEl') ballEl: ElementRef;
   @ViewChild('basketEl') basketEl: ElementRef;
 
+  // Score
+  public shots = 0;
+  public hits = 0;
+  public score = 0;
+  public accuracy = 0;
+
   // Ball and basket
   public ball;
   private offsetY;
@@ -39,8 +45,6 @@ export class ShootingHoopsGameComponent implements AfterViewInit, OnDestroy {
   private highEnough = false;
   private lastY;
   private rot;
-
-
 
   private grabBallBound;
   private releaseBallBound;
