@@ -45,6 +45,8 @@ export class ShootingHoopsGameComponent implements AfterViewInit {
   private moveBallBound;
   private tickBound;
 
+  public constructor(private element: ElementRef) {}
+
   public ngAfterViewInit(): void {
     // Ball and basket vars
     this.ball = this.ballEl.nativeElement;

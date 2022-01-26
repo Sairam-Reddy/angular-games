@@ -16,4 +16,4 @@ const routes: Routes = [
   declarations: [ShootingHoopsGameComponent],
   exports: [ShootingHoopsGameComponent],
 })
-export class ShootingHooGameModule {}
+export class ShootingHoopGameModule {}
