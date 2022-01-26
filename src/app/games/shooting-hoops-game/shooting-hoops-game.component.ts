@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  OnDestroy,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { Particle } from './models/particle.model';
 import { Vector } from './models/vector.model';
 import { TweenMax, Elastic, Power1, Power2, Power3 } from 'gsap';
@@ -8,7 +14,7 @@ import { TweenMax, Elastic, Power1, Power2, Power3 } from 'gsap';
   templateUrl: './shooting-hoops-game.component.html',
   styleUrls: ['./shooting-hoops-game.component.scss'],
 })
-export class ShootingHoopsGameComponent implements AfterViewInit {
+export class ShootingHoopsGameComponent implements AfterViewInit, OnDestroy {
   @ViewChild('ballEl') ballEl: ElementRef;
   @ViewChild('basketEl') basketEl: ElementRef;
 
@@ -74,6 +80,13 @@ export class ShootingHoopsGameComponent implements AfterViewInit {
 
     // Wait a second before fading the elements in to prevent a flash of unpositioned/unstyled content
     TweenMax.to('.stage', 1, { autoAlpha: 1, delay: 1 });
+  }
+
+  public ngOnDestroy(): void {
+    window.removeEventListener('resize', this.resizeBound);
+    window.removeEventListener('resize', this.motchstart);
+
+    this.resizeObserver.unobserve(this.element.nativeElement);
   }
 
   private addEvents() {
