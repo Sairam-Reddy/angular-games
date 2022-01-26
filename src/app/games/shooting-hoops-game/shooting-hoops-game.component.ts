@@ -34,7 +34,7 @@ export class ShootingHoopsGameComponent implements AfterViewInit {
   private lastY;
   private rot;
 
-  // Score vars
+  // Score 
   public shots = 0;
   public hits = 0;
   public score = 0;
