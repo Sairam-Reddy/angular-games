@@ -44,6 +44,7 @@ export class ShootingHoopsGameComponent implements AfterViewInit {
   private releaseBallBound;
   private moveBallBound;
   private tickBound;
+  
 
   public constructor(private element: ElementRef) {}
 
@@ -60,6 +61,11 @@ export class ShootingHoopsGameComponent implements AfterViewInit {
 
     window.addEventListener('resize', this.resize.bind(this));
     window.addEventListener('orientationchange', this.resize.bind(this));
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.resize();
+    });
+    this.resizeObserver.observe(this.element.nativeElement);
 
     this.resize();
 
