@@ -34,7 +34,7 @@ export class ShootingHoopsGameComponent implements AfterViewInit {
   private lastY;
   private rot;
 
-  // Score 
+  // Score
   public shots = 0;
   public hits = 0;
   public score = 0;
@@ -160,12 +160,12 @@ export class ShootingHoopsGameComponent implements AfterViewInit {
                 this.score += 1;
               }
 
-              TweenMax.to('#net', 1, {
+              TweenMax.to('.net', 1, {
                 scaleY: 1.1,
                 transformOrigin: '50% 0',
                 ease: Elastic.easeOut,
               });
-              TweenMax.to('#net', 0.3, {
+              TweenMax.to('.net', 0.3, {
                 scale: 1,
                 transformOrigin: '50% 0',
                 ease: Power2.easeInOut,

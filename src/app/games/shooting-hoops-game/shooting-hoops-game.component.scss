@@ -45,7 +45,7 @@ svg {
   width: 100%;
 }
 
-#bHoop {
+.b-hoop {
   stroke-width: 5;
 
   .shadow {
@@ -55,13 +55,13 @@ svg {
 }
 
 .basket {
-  #net {
+  net {
     fill: none;
     stroke: #ccc;
     stroke-miterlimit: 10;
   }
 
-  #ring {
+  .ring {
     fill: #df4931;
     stroke: none;
   }
