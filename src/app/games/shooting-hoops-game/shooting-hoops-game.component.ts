@@ -84,9 +84,18 @@ export class ShootingHoopsGameComponent implements AfterViewInit, OnDestroy {
 
   public ngOnDestroy(): void {
     window.removeEventListener('resize', this.resizeBound);
-    window.removeEventListener('resize', this.motchstart);
+    window.removeEventListener('orientationchange', this.resizeBound);
+    this.element.nativeElement.removeEventListener(
+      'mousemove',
+      this.moveBallBound
+    );
+    this.element.nativeElement.removeEventListener(
+      'touchmove',
+      this.moveBallBound
+    );
 
     this.resizeObserver.unobserve(this.element.nativeElement);
+    this.removeEvents();
   }
 
   private addEvents() {
@@ -124,8 +133,8 @@ export class ShootingHoopsGameComponent implements AfterViewInit, OnDestroy {
     // Work out how the ratio between the basket's width and the ball's radius, make it a tiny smaller just for safety
     this.ratio = this.basketWidth / this.ballRadius - 0.1;
 
-    this.w = window.innerWidth;
-    this.h = window.innerHeight;
+    this.w = this.element.nativeElement.offsetWidth;
+    this.h = this.element.nativeElement.offsetHeight;
 
     // Make sure the basketall has no previous GSAP's transforms on it
     TweenMax.set(this.ball, { clearProps: 'all' });
@@ -220,8 +229,14 @@ export class ShootingHoopsGameComponent implements AfterViewInit, OnDestroy {
       this.getMouse(e).y - this.offsetY
     );
 
-    document.addEventListener('mousemove', this.moveBallBound);
-    document.addEventListener('touchmove', this.moveBallBound);
+    this.element.nativeElement.addEventListener(
+      'mousemove',
+      this.moveBallBound
+    );
+    this.element.nativeElement.addEventListener(
+      'touchmove',
+      this.moveBallBound
+    );
   }
 
   private moveBall(e) {
@@ -241,8 +256,14 @@ export class ShootingHoopsGameComponent implements AfterViewInit, OnDestroy {
     this.ball.removeEventListener('mousedown', this.grabBallBound);
     this.ball.removeEventListener('touchstart', this.grabBallBound);
     // Stop tracking the mousemove
-    document.removeEventListener('mousemove', this.moveBallBound);
-    document.removeEventListener('touchmove', this.moveBallBound);
+    this.element.nativeElement.removeEventListener(
+      'mousemove',
+      this.moveBallBound
+    );
+    this.element.nativeElement.removeEventListener(
+      'touchmove',
+      this.moveBallBound
+    );
     // Reset the mouse tracking defaults
     this.timestamp = null;
     const lastMouseX = null;
