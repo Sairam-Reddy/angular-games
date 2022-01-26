@@ -20,9 +20,14 @@
   <li>
     <a class="game-link" (click)="highway = true">Highway Race Game</a>
   </li>
+  <li>
+    <a class="game-link" (click)="shootingHoops = true">Shooting H Game</a>
+  </li>
 </ul>
 <div
-  *ngIf="ticTac || arrow || pinball || asteroid || pacman || highway"
+  *ngIf="
+    ticTac || arrow || pinball || asteroid || pacman || highway || shootingHoops
+  "
   class="game-container"
   [ngClass]="{ 'full-screen': fullScreen }"
 >

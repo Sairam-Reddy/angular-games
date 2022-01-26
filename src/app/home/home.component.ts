@@ -12,5 +12,6 @@ export class HomeComponent {
   asteroid = false;
   pacman = false;
   highway = false;
+  shootingHoops = false;
   fullScreen = false;
 }
