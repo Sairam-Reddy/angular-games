@@ -5,20 +5,16 @@ $secondary: #adafb3;
 $tertiary: #feebcb;
 $shadow: 0 0 1px #633a26;
 
-::ng-deep {
-  html,
-  body {
-    box-sizing: border-box;
-    height: 100vh;
-    margin: 0;
-    width: 100%;
-  }
-}
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+
+:host {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 svg {
@@ -55,7 +51,7 @@ svg {
 }
 
 .basket {
-  net {
+  .net {
     fill: none;
     stroke: #ccc;
     stroke-miterlimit: 10;
