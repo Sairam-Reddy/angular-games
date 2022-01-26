@@ -40,11 +40,7 @@ export class ShootingHoopsGameComponent implements AfterViewInit, OnDestroy {
   private lastY;
   private rot;
 
-  // Score
-  public shots = 0;
-  public hits = 0;
-  public score = 0;
-  public accuracy = 0;
+
 
   private grabBallBound;
   private releaseBallBound;
