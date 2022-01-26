@@ -41,7 +41,7 @@ export class Vector {
     return Math.atan2(this._y, this._x);
   }
 
-  public setLength(length: number): {
+  public setLength(length: number): void {
     const angle = this.getAngle();
     this._x = Math.cos(angle) * length;
     this._y = Math.sin(angle) * length;

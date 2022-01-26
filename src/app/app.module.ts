@@ -11,6 +11,7 @@ import { PinballGameModule } from './games/pinball-game/pinball-game.module';
 import { AsteroidGameModule } from './games/asteroid-game/asteroid-game.module';
 import { HighwayRaceGameModule } from './games/highway-race-game/highway-race-game.module';
 import { PacmanGameModule } from './games/pacman-game/pacman-game.module';
+import { ShootingHoopsGameModule } from './games/shooting-hoops-game/shooting-hoops-game.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { PacmanGameModule } from './games/pacman-game/pacman-game.module';
     PinballGameModule,
     AsteroidGameModule,
     HighwayRaceGameModule,
+    ShootingHoopsGameModule,
   ],
   declarations: [AppComponent, HomeComponent],
   bootstrap: [AppComponent],
